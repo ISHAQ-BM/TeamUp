@@ -28,6 +28,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://teamup.fly.dev/api/\"")
+            buildConfigField("String", "WEB_CLIENT_ID", "\"261720434481-heoejg2nf0vov9btptei8hss8a3ilkkg.apps.googleusercontent.com\"" )
         }
 
         release {
@@ -58,6 +59,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // google play service
+
+    implementation ("com.google.android.gms:play-services-auth:21.0.0")
+
     // Dagger - Hilt
 
     implementation("com.google.dagger:hilt-android:2.50")
@@ -83,4 +88,11 @@ dependencies {
 
     // Gson
     implementation("com.google.code.gson:gson:2.10.1")
+
+    //Kotlin Coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
+
+
 }
+

@@ -1,10 +1,14 @@
 package com.example.teamup.core.model
 
 
-sealed class Resource<T>{
-    class Success<T>(data: T) : Resource<T>()
+sealed class Resource<T>(
+    val data: T? = null,
+    val message: String? = null
 
-    class Error<T>(message: String?, data: T? = null) : Resource<T>()
+){
+    class Success<T>(data: T) : Resource<T>(data = data)
+
+    class Error<T>(message: String?, data: T? = null) : Resource<T>(message = message , data = data)
 
     class Loading<T> : Resource<T>()
 }
