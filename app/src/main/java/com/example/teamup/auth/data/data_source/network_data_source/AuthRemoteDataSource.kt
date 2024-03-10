@@ -32,4 +32,9 @@ class AuthRemoteDataSource
             withContext(Dispatchers.IO) {
                 authApi.confirmEmail()
             }
+
+    suspend fun sendPasswordResetEmail(email: String) : Response<Unit> =
+        withContext(Dispatchers.IO){
+            authApi.forgotPassword(email)
+        }
     }

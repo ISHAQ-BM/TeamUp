@@ -14,4 +14,6 @@ interface AuthRepository {
     ): Resource<Any>
 
     suspend fun sendEmailVerification(): Resource<Any>
+
+    suspend fun  sendPasswordResetEmail(email:String) : Resource<Any>
 }

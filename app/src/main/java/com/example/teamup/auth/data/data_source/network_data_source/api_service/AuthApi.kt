@@ -19,4 +19,9 @@ interface AuthApi {
 
     @GET("v1/auth/confirmEmail")
     suspend fun confirmEmail(): Response<Unit>
+
+    @POST("v1/auth/forgotPassword")
+    suspend fun forgotPassword(
+        @Body email:String
+    ): Response<Unit>
 }

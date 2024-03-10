@@ -31,4 +31,8 @@ class AuthRepositoryImpl
             return safeApiCall { authRemoteDataSource.sendEmailVerification() }
 
         }
+
+    override suspend fun sendPasswordResetEmail(email: String): Resource<Any> {
+        return safeApiCall { authRemoteDataSource.sendPasswordResetEmail(email) }
     }
+}
