@@ -9,6 +9,7 @@ import com.example.teamup.core.repository.BaseRepository
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.SignInClient
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -30,16 +31,16 @@ constructor(
 
     }
 
-    override suspend fun register(
+    override suspend fun signUp(
         email: String,
         password: String,
     ): Resource<Unit> {
-        return safeApiCall { authRemoteDataSource.register(email, password) }
+        return safeApiCall { authRemoteDataSource.signUp(email, password) }
 
     }
 
-    override suspend fun sendEmailVerification(): Resource<Unit> {
-        return safeApiCall { authRemoteDataSource.sendEmailVerification() }
+    override suspend fun sendEmailVerification(email:String): Resource<Unit> {
+        return safeApiCall { authRemoteDataSource.sendEmailVerification(email) }
 
     }
 
@@ -49,6 +50,18 @@ constructor(
 
     override suspend fun signUserWithOneTap(): Resource<BeginSignInResult> {
         return performGoogleSignUser { authRemoteDataSource.signUserWithOneTap() }
+    }
+
+    override suspend fun confirmEmail(email: String, code: String): Resource<Unit> {
+        return safeApiCall { authRemoteDataSource.confirmEmail(email,code) }
+    }
+
+    override suspend fun resetPassword(
+        email: String,
+        resetCode: String,
+        newPassword: String
+    ): Resource<Unit> {
+        return safeApiCall { authRemoteDataSource.resetPassword(email, resetCode, newPassword) }
     }
 
 }

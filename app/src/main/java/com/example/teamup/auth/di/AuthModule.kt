@@ -4,11 +4,23 @@ import android.content.Context
 import com.example.teamup.BuildConfig
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
+import com.example.teamup.auth.data.data_source.network_data_source.AuthRemoteDataSource
 import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
 import com.example.teamup.auth.data.repository.AuthRepositoryImpl
 import com.example.teamup.auth.domain.repository.AuthRepository
+import com.example.teamup.auth.domain.use_case.AuthUseCase
+import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
+import com.example.teamup.auth.domain.use_case.ForgotPasswordUseCase
+import com.example.teamup.auth.domain.use_case.ResetPasswordUseCase
+import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
+import com.example.teamup.auth.domain.use_case.SignInWithEmailAndPasswordUseCase
+import com.example.teamup.auth.domain.use_case.SignUpUseCase
+import com.example.teamup.auth.domain.use_case.SignUserWithOneTapUseCase
+import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
+import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -33,21 +45,25 @@ object AuthModule {
             .create(AuthApi::class.java)
     }
 
-    /*
+
     @Provides
     @Singleton
-    fun provideAuthRemoteDataSource(authApi: AuthApi,):AuthRemoteDataSource
-    {
-        return AuthRemoteDataSource(authApi)
+    fun provideAuthRemoteDataSource(
+        authApi: AuthApi,
+        oneTapClient: SignInClient,
+        @Named(SIGN_IN_REQUEST)
+        signUpRequest: BeginSignInRequest,
+        @Named(SIGN_UP_REQUEST)
+        signInRequest: BeginSignInRequest
+    ): AuthRemoteDataSource {
+        return AuthRemoteDataSource(authApi, oneTapClient, signUpRequest, signInRequest)
     }
-
-     */
 
 
     @Singleton
     @Provides
     @Named(SIGN_IN_REQUEST)
-    fun provideSignInRequest()= BeginSignInRequest.builder()
+    fun provideSignInRequest() = BeginSignInRequest.builder()
         .setGoogleIdTokenRequestOptions(
             BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                 .setSupported(true)
@@ -61,7 +77,7 @@ object AuthModule {
     @Singleton
     @Provides
     @Named(SIGN_UP_REQUEST)
-    fun provideSignUpRequest()= BeginSignInRequest.builder()
+    fun provideSignUpRequest() = BeginSignInRequest.builder()
         .setGoogleIdTokenRequestOptions(
             BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                 .setSupported(true)
@@ -76,11 +92,69 @@ object AuthModule {
     fun provideOneTapClient(
         @ApplicationContext
         context: Context
-    )= Identity.getSignInClient(context)
+    ) = Identity.getSignInClient(context)
 
+    @Singleton
+    @Provides
+    fun provideLogInWithEmailAndPasswordUseCase(authRepository: AuthRepository) =
+        SignInWithEmailAndPasswordUseCase(authRepository)
+
+    @Singleton
+    @Provides
+    fun provideSignUpUseCase(authRepository: AuthRepository) = SignUpUseCase(authRepository)
+
+    @Singleton
+    @Provides
+    fun provideValidateEmailUseCase() = ValidateEmailUseCase()
+
+    @Singleton
+    @Provides
+    fun provideValidatePasswordUseCase() = ValidatePasswordUseCase()
+
+    @Singleton
+    @Provides
+    fun provideForgotPasswordUseCase(authRepository: AuthRepository) =
+        ForgotPasswordUseCase(authRepository)
+
+    @Singleton
+    @Provides
+    fun provideConfirmEmailUseCase(authRepository: AuthRepository) =
+        ConfirmEmailUseCase(authRepository)
+
+    @Singleton
+    @Provides
+    fun provideSendVerificationEmailUseCase(authRepository: AuthRepository) =
+        SendVerificationEmailUseCase(authRepository)
+
+    fun provideResetPasswordUseCase(authRepository: AuthRepository) =
+        ResetPasswordUseCase(authRepository)
+
+
+    @Singleton
+    @Provides
+    fun provideAuthUseCase(
+        loginWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase,
+        signUpUseCase: SignUpUseCase,
+        validatePasswordUseCase: ValidatePasswordUseCase,
+        validateEmailUseCase: ValidateEmailUseCase,
+        forgotPasswordUseCase: ForgotPasswordUseCase,
+        confirmEmailUseCase: ConfirmEmailUseCase,
+        signUserWithOneTapUseCase: SignUserWithOneTapUseCase,
+        resetPasswordUseCase: ResetPasswordUseCase
+    ) = AuthUseCase(
+        loginWithEmailAndPasswordUseCase,
+        signUpUseCase,
+        validateEmailUseCase,
+        validatePasswordUseCase,
+        forgotPasswordUseCase,
+        confirmEmailUseCase,
+        signUserWithOneTapUseCase,
+        resetPasswordUseCase
+    )
 
 
 }
+
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {

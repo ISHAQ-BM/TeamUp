@@ -3,7 +3,9 @@ package com.example.teamup.auth.data.data_source.network_data_source
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
+import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -32,7 +34,7 @@ constructor(
             authApi.login(LoginRequest(email, password))
         }
 
-    suspend fun register(
+    suspend fun signUp(
         email: String,
         password: String,
     ): Response<Unit> =
@@ -40,9 +42,9 @@ constructor(
             authApi.register(LoginRequest(email, password))
         }
 
-    suspend fun sendEmailVerification(): Response<Unit> =
+    suspend fun sendEmailVerification(email:String): Response<Unit> =
         withContext(Dispatchers.IO) {
-            authApi.confirmEmail()
+            authApi.sendEmailVerification(email)
         }
 
     suspend fun sendPasswordResetEmail(email: String): Response<Unit> =
@@ -57,6 +59,16 @@ constructor(
             } catch (e: Exception) {
                 oneTapClient.beginSignIn(signUpRequest).await()
             }
+        }
+
+    suspend fun confirmEmail(email:String,code:String): Response<Unit> =
+        withContext(Dispatchers.IO) {
+            authApi.confirmEmail(ConfirmEmailRequest(email,code))
+        }
+
+    suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Response<Unit> =
+        withContext(Dispatchers.IO) {
+            authApi.resetPassword(ResetPasswordRequest(email,resetCode, newPassword))
         }
 
 

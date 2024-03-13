@@ -2,8 +2,11 @@ package com.example.teamup.auth.domain.use_case
 
 data class AuthUseCase(
     val logInWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase,
-    val registerWithEmailAndPasswordUseCase: RegisterUseCase,
+    val signUpUseCase: SignUpUseCase,
     val validateEmailUseCase: ValidateEmailUseCase,
     val validatePasswordUseCase: ValidatePasswordUseCase,
-    val forgotPasswordUseCase: ForgotPasswordUseCase
+    val forgotPasswordUseCase: ForgotPasswordUseCase,
+    val confirmEmailUseCase: ConfirmEmailUseCase,
+    val signUserWithOneTapUseCase: SignUserWithOneTapUseCase,
+    val resetPasswordUseCase: ResetPasswordUseCase
 )

@@ -9,16 +9,20 @@ interface AuthRepository {
         password: String,
     ): Resource<Unit>
 
-    suspend fun register(
+    suspend fun signUp(
         email: String,
         password: String,
     ): Resource<Unit>
 
-    suspend fun sendEmailVerification(): Resource<Unit>
+    suspend fun sendEmailVerification(email:String): Resource<Unit>
 
     suspend fun  sendPasswordResetEmail(email:String) : Resource<Unit>
 
     suspend fun signUserWithOneTap(): Resource<BeginSignInResult>
+
+    suspend fun confirmEmail(email:String,code:String):Resource<Unit>
+
+    suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Resource<Unit>
 
 
 
