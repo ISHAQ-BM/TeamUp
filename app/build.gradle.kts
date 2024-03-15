@@ -92,6 +92,12 @@ dependencies {
     //Kotlin Coroutine
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 
+    //intuit library ..sdp/ssp
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.intuit.ssp:ssp-android:1.1.0")
+
+
+
 
 
 }

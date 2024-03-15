@@ -31,25 +31,27 @@ class LoginViewModel @Inject constructor(
                 _uiState.value = _uiState.value?.copy(password = event.password)
             }
 
-            is LoginEvent.ForgotPassword -> {
+            is LoginEvent.ForgotPasswordClicked -> {
                 if (isEmailValid()){
                     sendResetPasswordEmail()
                 }
 
             }
 
-            is LoginEvent.LoginWithGoogle -> {
+            is LoginEvent.LoginWithGoogleClicked -> {
                 loginWithGoogle()
             }
 
-            is LoginEvent.LoginWithGithub -> {
+            is LoginEvent.LoginWithGithubClicked -> {
 
             }
 
-            is LoginEvent.Login -> {
+            is LoginEvent.LoginClicked -> {
                 if (isUserInputsValid())
                     login()
             }
+
+            is LoginEvent.RegisterClicked -> {}
         }
     }
 
@@ -67,10 +69,10 @@ class LoginViewModel @Inject constructor(
                     }
                     is Resource.Error -> {
                         _uiState.value=_uiState.value!!.copy(
-                            isLoading = false
+                            isLoading = false,
                         )
                     }
-                    else ->{}
+
 
                 }
             }
@@ -98,7 +100,6 @@ class LoginViewModel @Inject constructor(
                             isLoading = false
                         )
                     }
-                    else ->{}
 
                 }
             }

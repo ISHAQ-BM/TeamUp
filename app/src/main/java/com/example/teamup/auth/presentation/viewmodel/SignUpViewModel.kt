@@ -26,16 +26,18 @@ class SignUpViewModel @Inject constructor(
             is SignUpEvent.PasswordChanged -> {
                 _uiState.value =_uiState.value?.copy(password =event.password)
             }
-            is SignUpEvent.SignUpWithGoogle -> {
+            is SignUpEvent.SignUpWithGoogleClicked -> {
                 signUpWithGoogle()
             }
-            is SignUpEvent.SignUpWithGithub -> {
+            is SignUpEvent.SignUpWithGithubClicked -> {
 
             }
-            is SignUpEvent.SignUp-> {
+            is SignUpEvent.SignUpClicked-> {
                 if (isUserInputsValid())
                     signUp()
             }
+
+            is SignUpEvent.LoginClicked ->{}
         }
     }
 
@@ -56,7 +58,7 @@ class SignUpViewModel @Inject constructor(
                             isLoading = false
                         )
                     }
-                    else ->{}
+
 
                 }
             }
@@ -85,7 +87,7 @@ class SignUpViewModel @Inject constructor(
                             isLoading = false
                         )
                     }
-                    else ->{}
+
 
 
                 }

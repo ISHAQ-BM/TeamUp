@@ -4,10 +4,12 @@ sealed class LoginEvent {
     data class EmailChanged(val email: String) : LoginEvent()
     data class PasswordChanged(val password: String) : LoginEvent()
 
-    data class ForgotPassword(val email: String) : LoginEvent()
-    data object Login : LoginEvent()
+    data class ForgotPasswordClicked(val email: String) : LoginEvent()
+    data object LoginClicked : LoginEvent()
 
-    data object LoginWithGoogle : LoginEvent()
+    data object RegisterClicked : LoginEvent()
 
-    data object LoginWithGithub : LoginEvent()
+    data object LoginWithGoogleClicked : LoginEvent()
+
+    data object LoginWithGithubClicked : LoginEvent()
 }

@@ -5,9 +5,10 @@ sealed class SignUpEvent {
     data class PasswordChanged(val password: String) : SignUpEvent()
 
 
-    data object SignUp : SignUpEvent()
+    data object SignUpClicked : SignUpEvent()
+    data object LoginClicked : SignUpEvent()
 
-    data object SignUpWithGoogle : SignUpEvent()
+    data object SignUpWithGoogleClicked : SignUpEvent()
 
-    data object SignUpWithGithub : SignUpEvent()
+    data object SignUpWithGithubClicked : SignUpEvent()
 }
