@@ -1,45 +1,53 @@
 package com.example.teamup.auth.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.LoginEvent
 import com.example.teamup.auth.presentation.ui.state.LoginUiState
 import com.example.teamup.core.model.Resource
+import com.google.android.gms.auth.api.identity.SignInClient
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authUseCase: AuthUseCase
+    private val authUseCase: AuthUseCase,
+    val oneTapClient: SignInClient
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData(LoginUiState())
-    val uiState: LiveData<LoginUiState> = _uiState
+    private val _uiState = MutableStateFlow(LoginUiState())
+    val uiState: StateFlow<LoginUiState> = _uiState
+
+
 
 
     fun onEvent(event: LoginEvent) {
         when (event) {
             is LoginEvent.EmailChanged -> {
-                _uiState.value =_uiState.value?.copy(email = event.email)
+                _uiState.update { it.copy(email = event.email) }
+                validateEmail()
             }
 
             is LoginEvent.PasswordChanged -> {
-                _uiState.value = _uiState.value?.copy(password = event.password)
+                _uiState.update { it.copy(password = event.password ) }
+                validatePassword()
             }
 
-            is LoginEvent.ForgotPasswordClicked -> {
-                if (isEmailValid()){
-                    sendResetPasswordEmail()
-                }
+            is LoginEvent.GoogleIdTokenChanged-> {
+
 
             }
 
             is LoginEvent.LoginWithGoogleClicked -> {
-                loginWithGoogle()
+                initiateGoogleOneTapFlow()
+
             }
 
             is LoginEvent.LoginWithGithubClicked -> {
@@ -48,38 +56,51 @@ class LoginViewModel @Inject constructor(
 
             is LoginEvent.LoginClicked -> {
                 if (isUserInputsValid())
-                    login()
-            }
+                    loginWithEmailAndPassword()
 
-            is LoginEvent.RegisterClicked -> {}
+            }
         }
     }
 
-    private fun loginWithGoogle() {
-        _uiState.value = _uiState.value?.copy(
-            isLoading = true
-        )
+    private fun validatePassword() :Boolean{
+        val passwordValidationResult = authUseCase.validatePasswordUseCase(_uiState.value.password)
+        val hasError = !passwordValidationResult.successful
+        if (hasError) {
+            _uiState.update { it.copy(passwordError = passwordValidationResult.errorMessage) }
+            return false
+        }
+        _uiState.update { it.copy(passwordError = null) }
+        return true
+    }
+
+    private fun initiateGoogleOneTapFlow() {
         viewModelScope.launch {
-            authUseCase.signUserWithOneTapUseCase().also {
-                when(it){
+            authUseCase.signUserWithOneTapUseCase().collect {result ->
+                when(result){
+                    is Resource.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
                     is Resource.Success ->{
-                        _uiState.value=_uiState.value?.copy(
+                        _uiState.update { it.copy(
                             isLoading = false,
-                        )
+                            googleSignInResult = result.data
+                        ) }
                     }
                     is Resource.Error -> {
-                        _uiState.value=_uiState.value!!.copy(
+                        _uiState.update { it.copy(
                             isLoading = false,
-                        )
+                            generalErrorMessage = result.message
+                        ) }
                     }
-
 
                 }
             }
         }
     }
 
-    private fun sendResetPasswordEmail() {
+
+
+    /*private fun sendResetPasswordEmail() {
         _uiState.value = _uiState.value?.copy(
             isLoading = true
         )
@@ -88,12 +109,13 @@ class LoginViewModel @Inject constructor(
             authUseCase.forgotPasswordUseCase(
                 _uiState.value?.email!!,
 
-            ).also {
+                ).also {
                 when(it){
                     is Resource.Success ->{
                         _uiState.value=_uiState.value?.copy(
                             isLoading = false,
                         )
+                        Log.d("email sended","successs")
                     }
                     is Resource.Error -> {
                         _uiState.value=_uiState.value!!.copy(
@@ -101,77 +123,63 @@ class LoginViewModel @Inject constructor(
                         )
                     }
 
+                    is Resource.Loading -> TODO()
                 }
             }
         }
     }
-
-    private fun isEmailValid(): Boolean {
-        val emailValidationResult =
-            _uiState.value?.let { authUseCase.validateEmailUseCase(it.email) }
-        val hasError =
-            emailValidationResult?.successful == false
+    */
+    private fun validateEmail(): Boolean {
+        val emailValidationResult =authUseCase.validateEmailUseCase(_uiState.value.email)
+        val hasError = !emailValidationResult.successful
         if (hasError) {
-            _uiState.value = _uiState.value!!.copy(
-                emailError = emailValidationResult?.errorMessage
-            )
+            _uiState.update { it.copy(emailError = emailValidationResult.errorMessage) }
             return false
         }
+        _uiState.update { it.copy(emailError = null) }
         return true
-
-
     }
 
     private fun isUserInputsValid():Boolean {
-        val emailValidationResult =
-            _uiState.value?.let { authUseCase.validateEmailUseCase(it.email) }
-        val passwordValidationResult =
-            _uiState.value?.let { authUseCase.validatePasswordUseCase(it.password) }
-
-        val hasError =
-            emailValidationResult?.successful == false && passwordValidationResult?.successful == false
-
-        if (hasError) {
-            _uiState.value = _uiState.value!!.copy(
-                emailError = emailValidationResult?.errorMessage,
-                passwordError = passwordValidationResult?.errorMessage
-            )
-            return false
-        }
-        return true
-
+        return validateEmail() && validatePassword()
     }
 
-    private fun login() {
-        _uiState.value = _uiState.value?.copy(
-            isLoading = true
-        )
+    private fun loginWithEmailAndPassword() {
+
         viewModelScope.launch {
 
             authUseCase.logInWithEmailAndPasswordUseCase(
-                _uiState.value?.email!!,
-                _uiState.value?.password!!
-            ).also {
-                when(it){
+                _uiState.value.email,
+                _uiState.value.password
+            ).collect{result ->
+                when(result){
+                    is Resource.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
                     is Resource.Success ->{
-                        _uiState.value=_uiState.value?.copy(
-                            isLoading = false,
-                            loginSuccess = true
-                        )
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                isLoginSuccessful = true
+                            )
+                        }
                     }
                     is Resource.Error -> {
-                        _uiState.value=_uiState.value!!.copy(
-                            isLoading = false
-                        )
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                isLoginSuccessful = false,
+                                generalErrorMessage = result.message
+                            )
+                        }
                     }
-                    else ->{}
-
-
                 }
             }
         }
 
 
     }
+
+
 
 }

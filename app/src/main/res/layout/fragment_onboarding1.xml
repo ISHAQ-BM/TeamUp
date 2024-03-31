@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.presentation.ui.fragment.OnboardingFragment1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_28sdp">
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_46sdp"
+            android:text="@string/what_field_are_you_most_interested_in_learning"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_46sdp"
+
+            app:chipSpacingHorizontal="@dimen/_9sdp"
+            app:chipSpacingVertical="@dimen/_9sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_question"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_138sdp"
+                android:checked="true"
+                android:text="@string/mobile"
+                app:chipIcon="@drawable/ic_mobile"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_2"
+                android:layout_width="@dimen/_113sdp"
+                android:text="@string/design"
+
+                style="@style/Widget.TeamUp.Chip.Choice"
+                app:chipIcon="@drawable/ic_design"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_3"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_78sdp"
+
+                android:text="@string/web"
+                app:chipIcon="@drawable/ic_web"
+/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_4"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_173sdp"
+                android:text="@string/cyber_security"
+                app:chipIcon="@drawable/ic_design"
+ />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_5"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_116sdp"
+
+                android:text="@string/ai"
+
+                app:chipIcon="@drawable/ic_ai"
+                 />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_6"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_135sdp"
+                android:text="@string/game"
+
+                app:chipIcon="@drawable/ic_game"
+                 />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_7"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="@dimen/_134sdp"
+                android:text="@string/data_science"
+
+                app:chipIcon="@drawable/ic_data_science"
+               />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_30sdp"
+            style="@style/Widget.TeamUp.Button.ContainedButton"
+            app:layout_constraintBottom_toTopOf="@id/progress"
+            android:text="@string/next"/>
+
+        <ImageView
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/progress_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="@dimen/_35sdp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

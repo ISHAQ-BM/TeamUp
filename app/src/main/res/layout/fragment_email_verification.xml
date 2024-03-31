@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".auth.presentation.ui.fragment.EmailConfirmationFragment">
+    tools:context=".auth.presentation.ui.fragment.EmailVerificationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,27 +23,27 @@
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
-            android:id="@+id/tv_email_verification"
+            android:id="@+id/tv_verify_pin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-            android:text="@string/email_verification"
+            android:text="@string/verify_pin"
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back"
 
             />
         <TextView
-            android:id="@+id/tv_sent_code"
+            android:id="@+id/tv_enter_pin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
             android:textColor="@color/md_theme_outline"
-            app:layout_constraintTop_toBottomOf="@id/tv_email_verification"
+            app:layout_constraintTop_toBottomOf="@id/tv_verify_pin"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="@dimen/_12sdp"
-            android:text="@string/we_ve_sent_a_code_to_email_address_to_verify_your_account"/>
+            android:text="@string/enter_the_6_digit_pin_sent_to_your_email"/>
 
         <com.chaos.view.PinView
             android:id="@+id/code"
@@ -63,7 +63,7 @@
             android:itemBackground="@drawable/pin_background_shape"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sent_code"
+            app:layout_constraintTop_toBottomOf="@id/tv_enter_pin"
             />
 
 
@@ -72,9 +72,9 @@
 
 
         <Button
-            android:id="@+id/verify"
+            android:id="@+id/next"
             android:layout_height="wrap_content"
-            android:text="@string/verify"
+            android:text="@string/next"
             android:layout_marginTop="@dimen/_22sdp"
             style="@style/Widget.TeamUp.Button.ContainedButton"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -87,7 +87,7 @@
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             android:textColor="@color/md_theme_primary"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/verify"
+            app:layout_constraintTop_toBottomOf="@id/next"
             android:text="@string/didn_t_receive_code"/>
 
 

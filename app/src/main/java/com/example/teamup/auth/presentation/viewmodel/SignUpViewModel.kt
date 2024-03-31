@@ -8,9 +8,11 @@ import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.SignUpEvent
 import com.example.teamup.auth.presentation.ui.state.SignUpUiState
 import com.example.teamup.core.model.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val authUseCase: AuthUseCase
 ):ViewModel() {
@@ -27,21 +29,21 @@ class SignUpViewModel @Inject constructor(
                 _uiState.value =_uiState.value?.copy(password =event.password)
             }
             is SignUpEvent.SignUpWithGoogleClicked -> {
-                signUpWithGoogle()
+                //signUpWithGoogle()
             }
             is SignUpEvent.SignUpWithGithubClicked -> {
 
             }
             is SignUpEvent.SignUpClicked-> {
-                if (isUserInputsValid())
-                    signUp()
+                /*if (isUserInputsValid())
+                    //signUp()*/
             }
 
             is SignUpEvent.LoginClicked ->{}
         }
     }
 
-    private fun signUpWithGoogle() {
+    /*private fun signUpWithGoogle() {
         _uiState.value = _uiState.value?.copy(
             isLoading = true
         )
@@ -59,7 +61,7 @@ class SignUpViewModel @Inject constructor(
                         )
                     }
 
-
+                    is Resource.Loading -> TODO()
                 }
             }
         }
@@ -88,12 +90,11 @@ class SignUpViewModel @Inject constructor(
                         )
                     }
 
-
-
+                    is Resource.Loading -> TODO()
                 }
             }
         }
-    }
+    }*/
 
     private fun isUserInputsValid():Boolean {
         val emailValidationResult =

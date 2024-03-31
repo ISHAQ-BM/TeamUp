@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".auth.presentation.ui.fragment.EmailConfirmationFragment">
+    tools:context=".auth.presentation.ui.fragment.RecoverAccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,55 +16,58 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-
             app:drawableLeftCompat="@drawable/ic_back"
             android:text="@string/back"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
-            android:id="@+id/tv_email_verification"
+            android:id="@+id/tv_recover_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_23sdp"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-            android:text="@string/email_verification"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:text="@string/recover_your_account"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back"
-
+            app:layout_constraintTop_toTopOf="parent"
             />
         <TextView
-            android:id="@+id/tv_sent_code"
+            android:id="@+id/tv_enter_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
             android:textColor="@color/md_theme_outline"
-            app:layout_constraintTop_toBottomOf="@id/tv_email_verification"
+            app:layout_constraintTop_toBottomOf="@id/tv_recover_account"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:text="@string/we_ve_sent_a_code_to_email_address_to_verify_your_account"/>
+            android:layout_marginTop="@dimen/_9sdp"
+            android:text="@string/enter_your_email_address_and_we_ll_send_you_a_secure_pin_to_reset_your_password"/>
 
-        <com.chaos.view.PinView
-            android:id="@+id/code"
+        <TextView
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:itemCount="6"
-            android:layout_marginTop="@dimen/_32sdp"
-            android:inputType="phone"
-            app:itemWidth="@dimen/_38sdp"
-            app:itemRadius="@dimen/_9sdp"
-            app:itemHeight="@dimen/_45sdp"
-            app:viewType="none"
-            android:cursorVisible="true"
-            app:cursorWidth="1dp"
-            app:cursorColor="@color/md_theme_primary"
-            app:itemSpacing="@dimen/_6sdp"
-            android:itemBackground="@drawable/pin_background_shape"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sent_code"
-            />
+            android:text="@string/email"
+            android:layout_marginTop="@dimen/_28sdp"
+            app:layout_constraintTop_toBottomOf="@id/tv_enter_email"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:id="@+id/inputLayout_email"
+            app:endIconMode="clear_text"
+            android:layout_marginTop="@dimen/_2sdp"
+            style="@style/Widget.TeamUp.TextInputLayout.FillBox"
+            app:layout_constraintTop_toBottomOf="@id/tv_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                style="@style/Widget.TeamUp.TextInputEditText"
+
+                android:hint="@string/example_gmail_com" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
@@ -72,23 +75,13 @@
 
 
         <Button
-            android:id="@+id/verify"
+            android:id="@+id/next"
             android:layout_height="wrap_content"
-            android:text="@string/verify"
+            android:text="@string/next"
             android:layout_marginTop="@dimen/_22sdp"
             style="@style/Widget.TeamUp.Button.ContainedButton"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/code"/>
-        <TextView
-            android:id="@+id/resend_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-            android:textColor="@color/md_theme_primary"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/verify"
-            android:text="@string/didn_t_receive_code"/>
+            app:layout_constraintTop_toBottomOf="@id/inputLayout_email"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

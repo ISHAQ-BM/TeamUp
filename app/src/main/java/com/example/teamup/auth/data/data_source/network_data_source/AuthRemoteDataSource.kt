@@ -6,13 +6,13 @@ import com.example.teamup.auth.data.data_source.network_data_source.api_service.
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
+import com.example.teamup.core.BaseRemoteDataSource
+import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.SignInClient
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -24,36 +24,36 @@ constructor(
     @Named(SIGN_IN_REQUEST)
     private val signUpRequest: BeginSignInRequest,
     @Named(SIGN_UP_REQUEST)
-    private val signInRequest: BeginSignInRequest
-) {
+    private val signInRequest: BeginSignInRequest,
+
+) :BaseRemoteDataSource() {
     suspend fun signInWithEmailAndPassword(
         email: String,
         password: String,
-    ): Response<Unit> =
-        withContext(Dispatchers.IO) {
-            authApi.login(LoginRequest(email, password))
-        }
+    ): Flow<Resource<Unit>> = safeApiCall { authApi.login(LoginRequest(email, password)) }
+
+
 
     suspend fun signUp(
         email: String,
         password: String,
-    ): Response<Unit> =
-        withContext(Dispatchers.IO) {
-            authApi.register(LoginRequest(email, password))
-        }
+    ): Flow<Resource<Unit>> =
 
-    suspend fun sendEmailVerification(email:String): Response<Unit> =
-        withContext(Dispatchers.IO) {
+            safeApiCall { authApi.register(LoginRequest(email, password))}
+
+
+    suspend fun sendEmailVerification(email:String): Flow<Resource<Unit>> =
+        safeApiCall{
             authApi.sendEmailVerification(email)
         }
 
-    suspend fun sendPasswordResetEmail(email: String): Response<Unit> =
-        withContext(Dispatchers.IO) {
+    suspend fun sendPasswordResetEmail(email: String): Flow<Resource<Unit>> =
+        safeApiCall {
             authApi.forgotPassword(email)
         }
 
-    suspend fun signUserWithOneTap(): BeginSignInResult =
-        withContext(Dispatchers.IO) {
+    suspend fun initiateGoogleOneTapFlow() :Flow<Resource<BeginSignInResult>> =
+        performGoogleSignUser{
             try {
                 oneTapClient.beginSignIn(signInRequest).await()
             } catch (e: Exception) {
@@ -61,13 +61,13 @@ constructor(
             }
         }
 
-    suspend fun confirmEmail(email:String,code:String): Response<Unit> =
-        withContext(Dispatchers.IO) {
+    suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>> =
+        safeApiCall {
             authApi.confirmEmail(ConfirmEmailRequest(email,code))
         }
 
-    suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Response<Unit> =
-        withContext(Dispatchers.IO) {
+    suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Flow<Resource<Unit>> =
+        safeApiCall {
             authApi.resetPassword(ResetPasswordRequest(email,resetCode, newPassword))
         }
 

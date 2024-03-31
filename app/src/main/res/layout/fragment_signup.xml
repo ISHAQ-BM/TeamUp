@@ -4,146 +4,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.presentation.ui.fragment.SignupFragment">
+    tools:ignore="RtlHardcoded"
+    tools:context=".auth.presentation.ui.fragment.SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_24sdp">
+        android:padding="@dimen/_28sdp">
 
-        <ImageView
-            android:id="@+id/logo"
+       
+        <TextView
+            android:id="@+id/tv_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
 
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:text="@string/create_your_account"/>
         <TextView
-            android:id="@+id/tv_welcome"
-            style="@style/TextAppearance.TeamUp.SubHeading"
-            android:layout_marginTop="@dimen/_36sdp"
-            android:text="become a member"
-            app:layout_constraintLeft_toLeftOf="@id/logo"
-            app:layout_constraintRight_toRightOf="@id/logo"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+            android:id="@+id/tv_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/full_name"
+            android:layout_marginTop="@dimen/_12sdp"
 
-        <TextView
-            android:id="@+id/tv_fill_info"
-            style="@style/TextAppearance.TeamUp.Text"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="let's register your account"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintLeft_toLeftOf="@id/tv_welcome"
-            app:layout_constraintRight_toRightOf="@id/tv_welcome"
-            app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
+            app:layout_constraintTop_toBottomOf="@id/tv_create_account"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout_full_name"
-            style="@style/Widget.TeamUp.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
             app:endIconMode="clear_text"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_fill_info">
+            style="@style/Widget.TeamUp.TextInputLayout.FillBox"
+
+            android:layout_marginTop="@dimen/_2sdp"
+            app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+            app:layout_constraintLeft_toLeftOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/full_name"
+                android:layout_width="match_parent"
                 style="@style/Widget.TeamUp.TextInputEditText"
-                android:hint="full name"
-                android:inputType="text" />
+
+                android:hint="@string/ishaq_belhadj_mehdi"
+                 />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:layout_marginTop="@dimen/_21sdp"
+            app:layout_constraintTop_toBottomOf="@id/inputLayout_full_name"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:id="@+id/inputLayout_email"
-            style="@style/Widget.TeamUp.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="@dimen/_10sdp"
             app:endIconMode="clear_text"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_full_name">
 
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginTop="@dimen/_2sdp"
+            style="@style/Widget.TeamUp.TextInputLayout.FillBox"
+            app:layout_constraintTop_toBottomOf="@id/tv_email">
+
+        <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
-                style="@style/Widget.TeamUp.TextInputEditText"
-                android:hint="email"
-                android:inputType="textEmailAddress" />
+                android:layout_width="match_parent"
+            style="@style/Widget.TeamUp.TextInputEditText"
+
+            android:hint="@string/example_gmail_com"
+             />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
+        <TextView
+            android:id="@+id/tv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:layout_marginTop="@dimen/_21sdp"
+
+            app:layout_constraintTop_toBottomOf="@id/inputLayout_email"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout_password"
-            style="@style/Widget.TeamUp.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
             app:endIconMode="password_toggle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_email">
 
+            android:layout_marginTop="@dimen/_2sdp"
+            style="@style/Widget.TeamUp.TextInputLayout.FillBox"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_password">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
+                android:layout_width="match_parent"
                 style="@style/Widget.TeamUp.TextInputEditText"
-                android:hint="password"
+                android:hint="@string/password"
+
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/signup"
             style="@style/Widget.TeamUp.Button.ContainedButton"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="sign up"
+            android:text="@string/sign_up"
+
+            android:layout_marginTop="@dimen/_22sdp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayout_password" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="@dimen/_78sdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_or"
+            app:layout_constraintBottom_toBottomOf="@id/tv_or"
+            app:layout_constraintRight_toLeftOf="@id/tv_or"/>
         <TextView
-            android:id="@+id/tv_continue_with"
-            style="@style/TextAppearance.TeamUp.Text"
-            android:layout_marginTop="@dimen/_36sdp"
-            android:text="or continue with"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/signup" />
+            android:id="@+id/tv_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/or"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="@color/md_theme_outline"
+
+            android:paddingHorizontal="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/signup"
+            app:layout_constraintLeft_toLeftOf="@id/signup"
+            app:layout_constraintRight_toRightOf="@id/signup"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="@dimen/_78sdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_or"
+            app:layout_constraintBottom_toBottomOf="@id/tv_or"
+            app:layout_constraintLeft_toRightOf="@id/tv_or"/>
+
+
 
         <ImageView
+            android:id="@+id/linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_linkedin"
+            android:background="@drawable/circle_gray"
+            android:padding="8dp"
+            android:contentDescription="@string/sign_up_with_linkedin_account"
+            android:layout_marginRight="@dimen/_25sdp"
+            app:tint="@color/md_theme_primary"
+            app:layout_constraintRight_toLeftOf="@id/google"
+            app:layout_constraintTop_toTopOf="@id/google"
+            />
+        <ImageView
             android:id="@+id/google"
-            android:layout_width="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_google"
-            app:layout_constraintRight_toLeftOf="@id/tv_continue_with"
-            app:layout_constraintTop_toBottomOf="@id/tv_continue_with"
+            android:background="@drawable/circle_gray"
+            android:padding="8dp"
+            android:contentDescription="@string/sign_up_with_google_account"
+            android:layout_marginTop="@dimen/_17sdp"
+            app:tint="@color/md_theme_primary"
+            app:layout_constraintLeft_toLeftOf="@id/tv_or"
+            app:layout_constraintRight_toRightOf="@id/tv_or"
+            app:layout_constraintTop_toBottomOf="@id/tv_or"
             />
         <ImageView
             android:id="@+id/github"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_github"
-            app:layout_constraintLeft_toRightOf="@id/tv_continue_with"
-            app:layout_constraintTop_toBottomOf="@id/tv_continue_with"
-            />
+            android:background="@drawable/circle_gray"
+            android:padding="8dp"
+            android:contentDescription="@string/sign_up_with_github_account"
+            android:layout_marginLeft="@dimen/_25sdp"
+            app:tint="@color/md_theme_primary"
+            app:layout_constraintTop_toTopOf="@id/google"
+            app:layout_constraintLeft_toRightOf="@id/google"
+             />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:layout_marginTop="@dimen/_25sdp"
+            app:layout_constraintTop_toBottomOf="@id/google"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                style="@style/TextAppearance.TeamUp.Text"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:text="have an account"
-                android:textColor="@color/black" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                android:textColor="@color/md_theme_outline"
+                android:text="@string/already_have_an_account"
+                />
 
             <TextView
                 android:id="@+id/login"
-                style="@style/TextAppearance.TeamUp.Text"
-                android:text="login"
-                android:textColor="@android:color/holo_blue_light" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                android:textColor="@color/md_theme_primary"
+
+                />
 
         </LinearLayout>
 
@@ -158,11 +231,11 @@
         android:visibility="gone"
         android:focusable="true" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top"
         android:visibility="gone"
         />
 

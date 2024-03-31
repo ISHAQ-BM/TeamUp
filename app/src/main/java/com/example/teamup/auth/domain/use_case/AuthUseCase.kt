@@ -7,6 +7,7 @@ data class AuthUseCase(
     val validatePasswordUseCase: ValidatePasswordUseCase,
     val forgotPasswordUseCase: ForgotPasswordUseCase,
     val confirmEmailUseCase: ConfirmEmailUseCase,
-    val signUserWithOneTapUseCase: SignUserWithOneTapUseCase,
-    val resetPasswordUseCase: ResetPasswordUseCase
+    val signUserWithOneTapUseCase: `InitiateGoogleOneTapFlow()`,
+    val resetPasswordUseCase: ResetPasswordUseCase,
+    val validateDisplayNameUseCase: ValidateDisplayNameUseCase
 )

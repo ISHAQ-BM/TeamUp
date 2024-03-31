@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.presentation.ui.fragment.OnboardingFragment2">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_28sdp">
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+
+            app:drawableLeftCompat="@drawable/ic_back"
+            android:text="@string/back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_46sdp"
+
+            android:text="@string/how_would_you_describe_your_experience"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_question"
+
+            app:chipSpacingHorizontal="@dimen/_9sdp"
+            app:chipSpacingVertical="@dimen/_9sdp"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            android:layout_marginTop="@dimen/_46sdp"
+
+            >
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_37sdp"
+                android:checked="true"
+                android:text="@string/beginner"
+                app:chipStartPadding="0dp"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_2"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_37sdp"
+                android:text="@string/intermediate"
+                android:textColor="@color/chip_text_color"
+                app:chipStartPadding="0dp"
+                android:textAlignment="center"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_3"
+                style="@style/Widget.TeamUp.Chip.Choice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_37sdp"
+                android:text="@string/expert"
+                app:chipStartPadding="0dp"
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/next"
+            style="@style/Widget.TeamUp.Button.ContainedButton"
+            android:layout_width="match_parent"
+            android:text="@string/next"
+            android:layout_marginBottom="@dimen/_30sdp"
+
+            app:layout_constraintBottom_toTopOf="@id/progress" />
+
+        <ImageView
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_35sdp"
+            android:src="@drawable/progress_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

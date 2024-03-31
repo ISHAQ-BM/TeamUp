@@ -15,7 +15,8 @@ import com.example.teamup.auth.domain.use_case.ResetPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
 import com.example.teamup.auth.domain.use_case.SignInWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SignUpUseCase
-import com.example.teamup.auth.domain.use_case.SignUserWithOneTapUseCase
+import com.example.teamup.auth.domain.use_case.`InitiateGoogleOneTapFlow()`
+import com.example.teamup.auth.domain.use_case.ValidateDisplayNameUseCase
 import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
 import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -101,6 +102,10 @@ object AuthModule {
 
     @Singleton
     @Provides
+    fun provideValidateDisplayNameUseCase() =ValidateDisplayNameUseCase()
+
+    @Singleton
+    @Provides
     fun provideSignUpUseCase(authRepository: AuthRepository) = SignUpUseCase(authRepository)
 
     @Singleton
@@ -139,8 +144,9 @@ object AuthModule {
         validateEmailUseCase: ValidateEmailUseCase,
         forgotPasswordUseCase: ForgotPasswordUseCase,
         confirmEmailUseCase: ConfirmEmailUseCase,
-        signUserWithOneTapUseCase: SignUserWithOneTapUseCase,
-        resetPasswordUseCase: ResetPasswordUseCase
+        signUserWithOneTapUseCase: `InitiateGoogleOneTapFlow()`,
+        resetPasswordUseCase: ResetPasswordUseCase,
+        validateDisplayNameUseCase: ValidateDisplayNameUseCase
     ) = AuthUseCase(
         loginWithEmailAndPasswordUseCase,
         signUpUseCase,
@@ -149,7 +155,8 @@ object AuthModule {
         forgotPasswordUseCase,
         confirmEmailUseCase,
         signUserWithOneTapUseCase,
-        resetPasswordUseCase
+        resetPasswordUseCase,
+        validateDisplayNameUseCase
     )
 
 
