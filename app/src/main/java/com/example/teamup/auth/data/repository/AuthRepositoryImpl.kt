@@ -22,7 +22,7 @@ constructor(
     @Named(SIGN_UP_REQUEST)
     private val signInRequest: BeginSignInRequest,
 ) :  AuthRepository {
-    override suspend fun signInWithEmailAndPassword(
+    override suspend fun loginWithEmailAndPassword(
         email: String,
         password: String,
     ): Flow<Resource<Unit>> =
@@ -30,10 +30,11 @@ constructor(
 
 
 
-    override suspend fun signUp(
+    override suspend fun signUpWithEmailAndPassword(
+        fullName:String,
         email: String,
         password: String,
-    ): Flow<Resource<Unit>>  = authRemoteDataSource.signUp(email, password)
+    ): Flow<Resource<Unit>>  = authRemoteDataSource.signUp(fullName,email, password)
 
 
 

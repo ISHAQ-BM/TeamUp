@@ -13,11 +13,11 @@ import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
 import com.example.teamup.auth.domain.use_case.ForgotPasswordUseCase
 import com.example.teamup.auth.domain.use_case.ResetPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
-import com.example.teamup.auth.domain.use_case.SignInWithEmailAndPasswordUseCase
-import com.example.teamup.auth.domain.use_case.SignUpUseCase
-import com.example.teamup.auth.domain.use_case.`InitiateGoogleOneTapFlow()`
-import com.example.teamup.auth.domain.use_case.ValidateDisplayNameUseCase
+import com.example.teamup.auth.domain.use_case.LoginWithEmailAndPasswordUseCase
+import com.example.teamup.auth.domain.use_case.SignUpWithEmailAndPasswordUseCase
+import com.example.teamup.auth.domain.use_case.InitiateGoogleOneTapFlow
 import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
+import com.example.teamup.auth.domain.use_case.ValidateFullNameUseCase
 import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -98,15 +98,12 @@ object AuthModule {
     @Singleton
     @Provides
     fun provideLogInWithEmailAndPasswordUseCase(authRepository: AuthRepository) =
-        SignInWithEmailAndPasswordUseCase(authRepository)
+        LoginWithEmailAndPasswordUseCase(authRepository)
+
 
     @Singleton
     @Provides
-    fun provideValidateDisplayNameUseCase() =ValidateDisplayNameUseCase()
-
-    @Singleton
-    @Provides
-    fun provideSignUpUseCase(authRepository: AuthRepository) = SignUpUseCase(authRepository)
+    fun provideSignUpUseCase(authRepository: AuthRepository) = SignUpWithEmailAndPasswordUseCase(authRepository)
 
     @Singleton
     @Provides
@@ -131,32 +128,38 @@ object AuthModule {
     fun provideSendVerificationEmailUseCase(authRepository: AuthRepository) =
         SendVerificationEmailUseCase(authRepository)
 
+    @Singleton
+    @Provides
     fun provideResetPasswordUseCase(authRepository: AuthRepository) =
         ResetPasswordUseCase(authRepository)
 
+    @Singleton
+    @Provides
+    fun provideValidateFullNameUseCase() =
+        ValidateFullNameUseCase()
 
     @Singleton
     @Provides
     fun provideAuthUseCase(
-        loginWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase,
-        signUpUseCase: SignUpUseCase,
+        loginWithEmailAndPasswordUseCase: LoginWithEmailAndPasswordUseCase,
+        signUpWithEmailAndPasswordUseCase: SignUpWithEmailAndPasswordUseCase,
         validatePasswordUseCase: ValidatePasswordUseCase,
         validateEmailUseCase: ValidateEmailUseCase,
         forgotPasswordUseCase: ForgotPasswordUseCase,
         confirmEmailUseCase: ConfirmEmailUseCase,
-        signUserWithOneTapUseCase: `InitiateGoogleOneTapFlow()`,
+        initiateGoogleOneTapFlowUseCase: InitiateGoogleOneTapFlow,
         resetPasswordUseCase: ResetPasswordUseCase,
-        validateDisplayNameUseCase: ValidateDisplayNameUseCase
+        validateFullNameUseCase: ValidateFullNameUseCase
     ) = AuthUseCase(
         loginWithEmailAndPasswordUseCase,
-        signUpUseCase,
+        signUpWithEmailAndPasswordUseCase,
         validateEmailUseCase,
         validatePasswordUseCase,
+        validateFullNameUseCase,
         forgotPasswordUseCase,
         confirmEmailUseCase,
-        signUserWithOneTapUseCase,
-        resetPasswordUseCase,
-        validateDisplayNameUseCase
+        initiateGoogleOneTapFlowUseCase,
+        resetPasswordUseCase
     )
 
 

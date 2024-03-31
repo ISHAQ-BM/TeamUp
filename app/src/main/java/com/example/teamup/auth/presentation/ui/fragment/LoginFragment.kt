@@ -108,6 +108,7 @@ class LoginFragment : Fragment() {
         }
 
         binding?.login?.setOnClickListener {
+            clearInputFieldFocus();
             viewModel.onEvent(LoginEvent.LoginClicked)
         }
 
@@ -121,6 +122,12 @@ class LoginFragment : Fragment() {
 
     }
 
+    private fun clearInputFieldFocus() {
+        binding?.apply {
+            inputLayoutEmail.clearFocus()
+            inputLayoutPassword.clearFocus()
+        }
+    }
 
 
     private fun launch(signInResult: BeginSignInResult) {
@@ -135,7 +142,7 @@ class LoginFragment : Fragment() {
     }
     private fun showPasswordErrorMessage(errorMessage: String?) {
         if (!errorMessage.isNullOrEmpty())
-        binding?.inputLayoutPassword?.error = errorMessage
+            binding?.inputLayoutPassword?.error = errorMessage
     }
 
     private fun clearEmailError() {

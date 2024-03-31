@@ -2,6 +2,7 @@ package com.example.teamup.auth.data.data_source.network_data_source.api_service
 
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.TokenResponse
 import retrofit2.Response
@@ -24,7 +25,7 @@ interface AuthApi {
 
     @POST("auth/register")
     suspend fun register(
-        @Body loginRequest: LoginRequest,
+        @Body registerRequest: RegisterRequest,
     ): Response<Unit>
 
     @POST("auth/confirmEmail")

@@ -5,6 +5,7 @@ import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
@@ -35,11 +36,12 @@ constructor(
 
 
     suspend fun signUp(
+        fullName:String,
         email: String,
         password: String,
     ): Flow<Resource<Unit>> =
 
-            safeApiCall { authApi.register(LoginRequest(email, password))}
+            safeApiCall { authApi.register(RegisterRequest(fullName,email, password))}
 
 
     suspend fun sendEmailVerification(email:String): Flow<Resource<Unit>> =

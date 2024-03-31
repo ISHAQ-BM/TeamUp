@@ -5,9 +5,9 @@ import com.google.android.gms.auth.api.identity.BeginSignInResult
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    suspend fun signInWithEmailAndPassword(email: String, password: String, ): Flow<Resource<Unit>>
+    suspend fun loginWithEmailAndPassword(email: String, password: String, ): Flow<Resource<Unit>>
 
-    suspend fun signUp(email: String, password: String, ): Flow<Resource<Unit>>
+    suspend fun signUpWithEmailAndPassword(fullName:String, email: String, password: String, ): Flow<Resource<Unit>>
 
     suspend fun sendEmailVerification(email:String): Flow<Resource<Unit>>
 

@@ -11,7 +11,6 @@ import com.google.android.gms.auth.api.identity.SignInClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,8 +25,6 @@ class LoginViewModel @Inject constructor(
     val uiState: StateFlow<LoginUiState> = _uiState
 
 
-
-
     fun onEvent(event: LoginEvent) {
         when (event) {
             is LoginEvent.EmailChanged -> {
@@ -36,11 +33,11 @@ class LoginViewModel @Inject constructor(
             }
 
             is LoginEvent.PasswordChanged -> {
-                _uiState.update { it.copy(password = event.password ) }
+                _uiState.update { it.copy(password = event.password) }
                 validatePassword()
             }
 
-            is LoginEvent.GoogleIdTokenChanged-> {
+            is LoginEvent.GoogleIdTokenChanged -> {
 
 
             }
@@ -62,7 +59,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun validatePassword() :Boolean{
+    private fun validatePassword(): Boolean {
         val passwordValidationResult = authUseCase.validatePasswordUseCase(_uiState.value.password)
         val hasError = !passwordValidationResult.successful
         if (hasError) {
@@ -75,29 +72,34 @@ class LoginViewModel @Inject constructor(
 
     private fun initiateGoogleOneTapFlow() {
         viewModelScope.launch {
-            authUseCase.signUserWithOneTapUseCase().collect {result ->
-                when(result){
+            authUseCase.initiateGoogleOneTapFlowUseCase().collect { result ->
+                when (result) {
                     is Resource.Loading -> {
                         _uiState.update { it.copy(isLoading = true) }
                     }
-                    is Resource.Success ->{
-                        _uiState.update { it.copy(
-                            isLoading = false,
-                            googleSignInResult = result.data
-                        ) }
+
+                    is Resource.Success -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                googleSignInResult = result.data
+                            )
+                        }
                     }
+
                     is Resource.Error -> {
-                        _uiState.update { it.copy(
-                            isLoading = false,
-                            generalErrorMessage = result.message
-                        ) }
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                generalErrorMessage = result.message
+                            )
+                        }
                     }
 
                 }
             }
         }
     }
-
 
 
     /*private fun sendResetPasswordEmail() {
@@ -130,7 +132,7 @@ class LoginViewModel @Inject constructor(
     }
     */
     private fun validateEmail(): Boolean {
-        val emailValidationResult =authUseCase.validateEmailUseCase(_uiState.value.email)
+        val emailValidationResult = authUseCase.validateEmailUseCase(_uiState.value.email)
         val hasError = !emailValidationResult.successful
         if (hasError) {
             _uiState.update { it.copy(emailError = emailValidationResult.errorMessage) }
@@ -140,7 +142,9 @@ class LoginViewModel @Inject constructor(
         return true
     }
 
-    private fun isUserInputsValid():Boolean {
+    private fun isUserInputsValid(): Boolean {
+        Log.d("validation","emaiil ${validateEmail()}  pd ${validatePassword()} }")
+
         return validateEmail() && validatePassword()
     }
 
@@ -151,12 +155,13 @@ class LoginViewModel @Inject constructor(
             authUseCase.logInWithEmailAndPasswordUseCase(
                 _uiState.value.email,
                 _uiState.value.password
-            ).collect{result ->
-                when(result){
+            ).collect { result ->
+                when (result) {
                     is Resource.Loading -> {
                         _uiState.update { it.copy(isLoading = true) }
                     }
-                    is Resource.Success ->{
+
+                    is Resource.Success -> {
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
@@ -164,6 +169,7 @@ class LoginViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is Resource.Error -> {
                         _uiState.update {
                             it.copy(
@@ -179,7 +185,6 @@ class LoginViewModel @Inject constructor(
 
 
     }
-
 
 
 }
