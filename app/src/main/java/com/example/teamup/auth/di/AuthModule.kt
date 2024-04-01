@@ -16,6 +16,7 @@ import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
 import com.example.teamup.auth.domain.use_case.LoginWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SignUpWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.InitiateGoogleOneTapFlow
+import com.example.teamup.auth.domain.use_case.SignUserWithGoogleUseCse
 import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
 import com.example.teamup.auth.domain.use_case.ValidateFullNameUseCase
 import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
@@ -135,6 +136,11 @@ object AuthModule {
 
     @Singleton
     @Provides
+    fun provideSignUserWithGoogleUseCase(authRepository: AuthRepository) =
+        SignUserWithGoogleUseCse(authRepository)
+
+    @Singleton
+    @Provides
     fun provideValidateFullNameUseCase() =
         ValidateFullNameUseCase()
 
@@ -149,7 +155,8 @@ object AuthModule {
         confirmEmailUseCase: ConfirmEmailUseCase,
         initiateGoogleOneTapFlowUseCase: InitiateGoogleOneTapFlow,
         resetPasswordUseCase: ResetPasswordUseCase,
-        validateFullNameUseCase: ValidateFullNameUseCase
+        validateFullNameUseCase: ValidateFullNameUseCase,
+        signUserWithGoogleUseCse: SignUserWithGoogleUseCse
     ) = AuthUseCase(
         loginWithEmailAndPasswordUseCase,
         signUpWithEmailAndPasswordUseCase,
@@ -159,7 +166,8 @@ object AuthModule {
         forgotPasswordUseCase,
         confirmEmailUseCase,
         initiateGoogleOneTapFlowUseCase,
-        resetPasswordUseCase
+        resetPasswordUseCase,
+        signUserWithGoogleUseCse
     )
 
 

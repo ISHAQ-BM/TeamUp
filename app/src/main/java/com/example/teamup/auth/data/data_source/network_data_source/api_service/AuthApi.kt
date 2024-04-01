@@ -33,6 +33,11 @@ interface AuthApi {
         @Body confirmEmailRequest: ConfirmEmailRequest
     ): Response<Unit>
 
+    @POST("auth/google")
+    suspend fun signWithGoogle(
+        @Body googleIdToken:String?
+    ): Response<Unit>
+
     @POST("auth/forgotPassword")
     suspend fun forgotPassword(
         @Body email:String

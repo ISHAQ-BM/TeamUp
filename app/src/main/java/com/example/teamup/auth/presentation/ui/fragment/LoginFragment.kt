@@ -42,8 +42,7 @@ class LoginFragment : Fragment() {
             try {
                 val credential = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
                 val googleIdToken = credential.googleIdToken
-                Toast.makeText(requireContext(), "successssss google",Toast.LENGTH_SHORT).show()
-
+                viewModel.onEvent(LoginEvent.GoogleIdTokenChanged(googleIdToken))
             } catch (e: ApiException) {
                 Toast.makeText(requireContext(), "error",Toast.LENGTH_SHORT).show()
             }

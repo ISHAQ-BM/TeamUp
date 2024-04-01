@@ -7,6 +7,9 @@ sealed class SignUpEvent {
 
     data object SignUpClicked : SignUpEvent()
 
+    data class GoogleIdTokenChanged(val googleIdToken: String?) : SignUpEvent()
+
+
     data object SignUpWithGoogleClicked : SignUpEvent()
 
     data object SignUpWithGithubClicked : SignUpEvent()

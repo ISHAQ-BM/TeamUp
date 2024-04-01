@@ -36,6 +36,9 @@ constructor(
         password: String,
     ): Flow<Resource<Unit>>  = authRemoteDataSource.signUp(fullName,email, password)
 
+    override suspend fun signWithGoogle(
+        googleIdToken: String?
+    ): Flow<Resource<Unit>> = authRemoteDataSource.signUserWithGoogle(googleIdToken)
 
 
     override suspend fun sendEmailVerification(email:String):Flow<Resource<Unit>> = authRemoteDataSource.sendEmailVerification(email)

@@ -48,7 +48,7 @@
 
 
         <com.otpview.OTPTextView
-            android:id="@+id/otp"
+            android:id="@+id/code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_32sdp"
@@ -74,7 +74,7 @@
             android:layout_marginTop="@dimen/_22sdp"
             style="@style/Widget.TeamUp.Button.ContainedButton"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/otp"/>
+            app:layout_constraintTop_toBottomOf="@id/code"/>
         <TextView
             android:id="@+id/resend_code"
             android:layout_width="wrap_content"

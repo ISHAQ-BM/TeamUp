@@ -54,6 +54,40 @@ class SignUpViewModel @Inject constructor(
 
             }
 
+            is SignUpEvent.GoogleIdTokenChanged -> {
+                signUserWithGoogle()
+            }
+        }
+    }
+
+    private fun signUserWithGoogle() {
+        viewModelScope.launch {
+            authUseCase.signUserWithGoogleUseCse(_uiState.value.googleIdToken).collect{result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
+
+                    is Resource.Success -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                isSignUpSuccessful = true
+                            )
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                generalErrorMessage = result.message
+                            )
+                        }
+                    }
+
+                }
+            }
         }
     }
 

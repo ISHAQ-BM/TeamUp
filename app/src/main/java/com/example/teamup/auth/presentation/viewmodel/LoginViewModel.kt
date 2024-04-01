@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.LoginEvent
+import com.example.teamup.auth.presentation.ui.event.SignUpEvent
 import com.example.teamup.auth.presentation.ui.state.LoginUiState
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -39,7 +40,7 @@ class LoginViewModel @Inject constructor(
 
             is LoginEvent.GoogleIdTokenChanged -> {
 
-
+                signUserWithGoogle()
             }
 
             is LoginEvent.LoginWithGoogleClicked -> {
@@ -55,6 +56,38 @@ class LoginViewModel @Inject constructor(
                 if (isUserInputsValid())
                     loginWithEmailAndPassword()
 
+            }
+
+        }
+    }
+
+    private fun signUserWithGoogle() {
+        viewModelScope.launch {
+            authUseCase.signUserWithGoogleUseCse(_uiState.value.googleIdToken).collect{result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
+
+                    is Resource.Success -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                isLoginSuccessful = true
+                            )
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                generalErrorMessage = result.message
+                            )
+                        }
+                    }
+
+                }
             }
         }
     }

@@ -16,9 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.teamup.R
-import com.example.teamup.auth.presentation.ui.event.LoginEvent
 import com.example.teamup.auth.presentation.ui.event.SignUpEvent
-import com.example.teamup.auth.presentation.ui.state.SignUpUiState
 import com.example.teamup.auth.presentation.viewmodel.SignUpViewModel
 import com.example.teamup.databinding.FragmentSignupBinding
 import com.google.android.gms.auth.api.identity.BeginSignInResult
@@ -39,8 +37,7 @@ class SignUpFragment : Fragment() {
             try {
                 val credential = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
                 val googleIdToken = credential.googleIdToken
-                Toast.makeText(requireContext(), "successssss google",Toast.LENGTH_SHORT).show()
-
+                viewModel.onEvent(SignUpEvent.GoogleIdTokenChanged(googleIdToken))
             } catch (e: ApiException) {
                 Toast.makeText(requireContext(), "error",Toast.LENGTH_SHORT).show()
             }
