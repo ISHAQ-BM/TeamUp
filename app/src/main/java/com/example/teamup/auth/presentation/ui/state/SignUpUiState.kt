@@ -13,5 +13,5 @@ data class SignUpUiState(
     val generalErrorMessage: String? = null,
     val isSignUpSuccessful: Boolean = false,
     val googleSignInResult: BeginSignInResult? = null,
-    val googleIdToken:String?=null
+    val googleIdToken:String=""
 )

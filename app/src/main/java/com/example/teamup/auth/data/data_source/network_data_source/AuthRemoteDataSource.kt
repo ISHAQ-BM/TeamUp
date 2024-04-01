@@ -34,7 +34,7 @@ constructor(
     ): Flow<Resource<Unit>> = safeApiCall { authApi.login(LoginRequest(email, password)) }
 
     suspend fun signUserWithGoogle(
-        googleIdToken:String?
+        googleIdToken:String
     ):Flow<Resource<Unit>> = safeApiCall { authApi.signWithGoogle(googleIdToken) }
 
 

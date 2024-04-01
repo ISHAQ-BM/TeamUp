@@ -1,5 +1,6 @@
 package com.example.teamup.core
 
+import android.util.Log
 import com.example.teamup.core.model.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -17,13 +18,17 @@ abstract class BaseRemoteDataSource {
             if (response.isSuccessful) {
                 emit(Resource.Success(data = response.body()!!))
             } else {
+                Log.d("error body","${response.errorBody()}")
                 emit(Resource.Error(response.errorBody().toString()))
             }
         } catch (e: HttpException) {
+            Log.d("error httpexception", e.message.toString())
             emit(Resource.Error(message = e.message))
         } catch (e: IOException) {
+            Log.d("error ioexception", e.message.toString())
             emit(Resource.Error(message = e.message))
         } catch (e: Exception) {
+            Log.d("error exception", e.message.toString())
             emit(Resource.Error(message = e.message))
         }
     }
@@ -35,10 +40,13 @@ abstract class BaseRemoteDataSource {
             val signUserResult = signUser()
             emit(Resource.Success(signUserResult))
         } catch (e: HttpException) {
+            Log.d("error httpexception", e.message.toString())
             emit(Resource.Error(message = e.message))
         } catch (e: IOException) {
+            Log.d("error ioexception", e.message.toString())
             emit(Resource.Error(message = e.message))
         } catch (e: Exception) {
+            Log.d("error exception", e.message.toString())
             emit(Resource.Error(message = e.message))
         }
     }.flowOn(Dispatchers.IO)

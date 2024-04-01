@@ -42,6 +42,8 @@
         <action
             android:id="@+id/action_emailConfirmationFragment_to_onboardingFragment1"
             app:destination="@id/onboardingFragment1" />
+        <argument android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment1"

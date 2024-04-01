@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_email_verification"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="@dimen/_12sdp"
-            android:text="@string/we_ve_sent_a_code_to_email_address_to_verify_your_account"/>
+            android:text="@string/we_ve_sent_a_code"/>
 
         <com.otpview.OTPTextView
             android:id="@+id/code"

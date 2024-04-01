@@ -11,7 +11,7 @@
     <string name="forgot_password">Forgot password ?</string>
     <string name="don_t_have_an_account">Don’t have an account?</string>
     <string name="email_verification">Email Verification</string>
-    <string name="we_ve_sent_a_code_to_email_address_to_verify_your_account">We\'ve sent a code to [email address] to verify your account</string>
+    <string name="we_ve_sent_a_code">We\'ve sent a code to %1$s to verify your account</string>
     <string name="verify">Verify</string>
     <string name="didn_t_receive_code">Didn’t receive code?</string>
     <string name="what_field_are_you_most_interested_in_learning">What field are you most interested in learning ?</string>

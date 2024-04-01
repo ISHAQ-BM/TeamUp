@@ -28,7 +28,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://teamup.fly.dev/api/v2/\"")
-            buildConfigField("String", "WEB_CLIENT_ID", "\"261720434481-heoejg2nf0vov9btptei8hss8a3ilkkg.apps.googleusercontent.com\"" )
+            buildConfigField("String", "WEB_CLIENT_ID", "\"261720434481-d21k4tcp9q5h3hkcjhg7trh9738331gj.apps.googleusercontent.com\"" )
         }
 
         release {

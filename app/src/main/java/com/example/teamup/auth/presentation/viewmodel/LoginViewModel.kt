@@ -176,8 +176,6 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun isUserInputsValid(): Boolean {
-        Log.d("validation","emaiil ${validateEmail()}  pd ${validatePassword()} }")
-
         return validateEmail() && validatePassword()
     }
 

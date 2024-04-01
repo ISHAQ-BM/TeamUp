@@ -139,6 +139,8 @@ object AuthModule {
     fun provideSignUserWithGoogleUseCase(authRepository: AuthRepository) =
         SignUserWithGoogleUseCse(authRepository)
 
+
+
     @Singleton
     @Provides
     fun provideValidateFullNameUseCase() =
@@ -156,7 +158,8 @@ object AuthModule {
         initiateGoogleOneTapFlowUseCase: InitiateGoogleOneTapFlow,
         resetPasswordUseCase: ResetPasswordUseCase,
         validateFullNameUseCase: ValidateFullNameUseCase,
-        signUserWithGoogleUseCse: SignUserWithGoogleUseCse
+        signUserWithGoogleUseCse: SignUserWithGoogleUseCse,
+        sendVerificationEmailUseCase: SendVerificationEmailUseCase
     ) = AuthUseCase(
         loginWithEmailAndPasswordUseCase,
         signUpWithEmailAndPasswordUseCase,
@@ -167,7 +170,8 @@ object AuthModule {
         confirmEmailUseCase,
         initiateGoogleOneTapFlowUseCase,
         resetPasswordUseCase,
-        signUserWithGoogleUseCse
+        signUserWithGoogleUseCse,
+        sendVerificationEmailUseCase
     )
 
 

@@ -8,7 +8,7 @@ interface AuthRepository {
     suspend fun loginWithEmailAndPassword(email: String, password: String, ): Flow<Resource<Unit>>
 
     suspend fun signUpWithEmailAndPassword(fullName:String, email: String, password: String): Flow<Resource<Unit>>
-    suspend fun signWithGoogle(googleIdToken:String? ): Flow<Resource<Unit>>
+    suspend fun signWithGoogle(googleIdToken:String ): Flow<Resource<Unit>>
 
     suspend fun sendEmailVerification(email:String): Flow<Resource<Unit>>
 

@@ -37,7 +37,7 @@ constructor(
     ): Flow<Resource<Unit>>  = authRemoteDataSource.signUp(fullName,email, password)
 
     override suspend fun signWithGoogle(
-        googleIdToken: String?
+        googleIdToken: String
     ): Flow<Resource<Unit>> = authRemoteDataSource.signUserWithGoogle(googleIdToken)
 
 

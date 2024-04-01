@@ -36,7 +36,7 @@ class SignUpFragment : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             try {
                 val credential = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
-                val googleIdToken = credential.googleIdToken
+                val googleIdToken = credential.googleIdToken!!
                 viewModel.onEvent(SignUpEvent.GoogleIdTokenChanged(googleIdToken))
             } catch (e: ApiException) {
                 Toast.makeText(requireContext(), "error",Toast.LENGTH_SHORT).show()
@@ -95,6 +95,10 @@ class SignUpFragment : Fragment() {
             }
         }
 
+        binding?.google?.setOnClickListener {
+            viewModel.onEvent(SignUpEvent.SignUpWithGoogleClicked)
+        }
+
         binding?.signup?.setOnClickListener {
             clearInputFieldFocus()
             viewModel.onEvent(SignUpEvent.SignUpClicked)
@@ -139,8 +143,10 @@ class SignUpFragment : Fragment() {
     }
 
     private fun handleSignUpSuccess(isSignUpSuccess: Boolean) {
-        if (isSignUpSuccess)
-            findNavController().navigate(R.id.action_signUpFragment_to_emailConfirmationFragment)
+        if (isSignUpSuccess){
+            val action=SignUpFragmentDirections.actionSignUpFragmentToEmailConfirmationFragment(viewModel.uiState.value.email)
+            findNavController().navigate(action)
+        }
     }
 
     private fun clearInputFieldFocus() {

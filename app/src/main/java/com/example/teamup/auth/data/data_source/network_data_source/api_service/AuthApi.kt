@@ -35,7 +35,7 @@ interface AuthApi {
 
     @POST("auth/google")
     suspend fun signWithGoogle(
-        @Body googleIdToken:String?
+        @Body googleIdToken:String
     ): Response<Unit>
 
     @POST("auth/forgotPassword")
