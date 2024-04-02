@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class EmailConfirmationViewModel @Inject constructor(
-    val authUseCase: AuthUseCase
+    private val authUseCase: AuthUseCase
 ) :ViewModel() {
     private val _uiState =MutableStateFlow(EmailConfirmationUiState())
     val uiState:StateFlow<EmailConfirmationUiState> =_uiState

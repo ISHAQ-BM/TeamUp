@@ -93,5 +93,12 @@
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.teamup.auth.presentation.ui.fragment.ResetPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" />
+        tools:layout="@layout/fragment_reset_password" >
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>

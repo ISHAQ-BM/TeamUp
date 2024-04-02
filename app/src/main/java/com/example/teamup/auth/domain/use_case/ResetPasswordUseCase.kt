@@ -7,7 +7,7 @@ class ResetPasswordUseCase @Inject constructor(
     val authRepository: AuthRepository
 ) {
    suspend operator fun invoke(email:String
-                               ,resetCode:String,
+                               ,resetToken:String,
                                newPassword:String
-   )=authRepository.resetPassword(email, resetCode, newPassword)
+   )=authRepository.resetPassword(email, resetToken, newPassword)
 }

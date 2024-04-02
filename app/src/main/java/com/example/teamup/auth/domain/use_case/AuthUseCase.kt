@@ -11,5 +11,6 @@ data class AuthUseCase(
     val initiateGoogleOneTapFlowUseCase: InitiateGoogleOneTapFlow,
     val resetPasswordUseCase: ResetPasswordUseCase,
     val signUserWithGoogleUseCse: SignUserWithGoogleUseCse,
-    val sendVerificationEmailUseCase: SendVerificationEmailUseCase
+    val sendVerificationEmailUseCase: SendVerificationEmailUseCase,
+    val exchangeResetCode: ExchangeResetCode
 )
