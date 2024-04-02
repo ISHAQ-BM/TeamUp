@@ -36,6 +36,10 @@ class OnboardingFragment2 : Fragment() {
 
         }
 
+        binding?.back?.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding?.skip?.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment2_to_onboardingFragment3)
         }
