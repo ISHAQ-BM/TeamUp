@@ -12,5 +12,6 @@ data class AuthUseCase(
     val resetPasswordUseCase: ResetPasswordUseCase,
     val signUserWithGoogleUseCse: SignUserWithGoogleUseCse,
     val sendVerificationEmailUseCase: SendVerificationEmailUseCase,
-    val exchangeResetCode: ExchangeResetCode
+    val exchangeResetCodeUseCase: ExchangeResetCodeUseCase,
+    val validateConfirmationPasswordUseCase: ValidateConfirmationPasswordUseCase
 )

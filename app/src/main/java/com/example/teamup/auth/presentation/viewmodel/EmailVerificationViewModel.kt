@@ -35,7 +35,7 @@ class EmailVerificationViewModel @Inject constructor(
 
     private fun verifyEmail() {
         viewModelScope.launch {
-            authUseCase.exchangeResetCode(_uiState.value.email,_uiState.value.code).collect{result ->
+            authUseCase.exchangeResetCodeUseCase(_uiState.value.email,_uiState.value.code).collect{ result ->
                 when (result) {
                     is Resource.Loading -> {
                         _uiState.update { it.copy(isLoading = true) }

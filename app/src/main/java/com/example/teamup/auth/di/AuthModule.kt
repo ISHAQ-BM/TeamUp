@@ -10,6 +10,7 @@ import com.example.teamup.auth.data.repository.AuthRepositoryImpl
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
+import com.example.teamup.auth.domain.use_case.ExchangeResetCodeUseCase
 import com.example.teamup.auth.domain.use_case.ForgotPasswordUseCase
 import com.example.teamup.auth.domain.use_case.ResetPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
@@ -17,6 +18,7 @@ import com.example.teamup.auth.domain.use_case.LoginWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SignUpWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.InitiateGoogleOneTapFlow
 import com.example.teamup.auth.domain.use_case.SignUserWithGoogleUseCse
+import com.example.teamup.auth.domain.use_case.ValidateConfirmationPasswordUseCase
 import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
 import com.example.teamup.auth.domain.use_case.ValidateFullNameUseCase
 import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
@@ -139,6 +141,18 @@ object AuthModule {
     fun provideSignUserWithGoogleUseCase(authRepository: AuthRepository) =
         SignUserWithGoogleUseCse(authRepository)
 
+    @Singleton
+    @Provides
+    fun provideExchangeResetCodeUseCase(authRepository: AuthRepository) =
+        ExchangeResetCodeUseCase(authRepository)
+
+    @Singleton
+    @Provides
+    fun provideValidateConfirmationPasswordUseCase() =
+        ValidateConfirmationPasswordUseCase()
+
+
+
 
 
     @Singleton
@@ -159,7 +173,10 @@ object AuthModule {
         resetPasswordUseCase: ResetPasswordUseCase,
         validateFullNameUseCase: ValidateFullNameUseCase,
         signUserWithGoogleUseCse: SignUserWithGoogleUseCse,
-        sendVerificationEmailUseCase: SendVerificationEmailUseCase
+        sendVerificationEmailUseCase: SendVerificationEmailUseCase,
+        exchangeResetCodeUseCase: ExchangeResetCodeUseCase,
+        validateConfirmationPasswordUseCase: ValidateConfirmationPasswordUseCase
+
     ) = AuthUseCase(
         loginWithEmailAndPasswordUseCase,
         signUpWithEmailAndPasswordUseCase,
@@ -171,7 +188,9 @@ object AuthModule {
         initiateGoogleOneTapFlowUseCase,
         resetPasswordUseCase,
         signUserWithGoogleUseCse,
-        sendVerificationEmailUseCase
+        sendVerificationEmailUseCase,
+        exchangeResetCodeUseCase,
+        validateConfirmationPasswordUseCase
     )
 
 

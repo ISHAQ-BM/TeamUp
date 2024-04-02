@@ -15,9 +15,11 @@ import com.example.teamup.auth.presentation.ui.event.EmailVerificationEvent
 import com.example.teamup.auth.presentation.viewmodel.EmailVerificationViewModel
 import com.example.teamup.databinding.FragmentEmailVerificationBinding
 import com.otpview.OTPListener
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class EmailVerificationFragment : Fragment() {
 
 

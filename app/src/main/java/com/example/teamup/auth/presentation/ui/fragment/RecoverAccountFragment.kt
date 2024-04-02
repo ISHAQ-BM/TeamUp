@@ -15,8 +15,10 @@ import com.example.teamup.auth.presentation.ui.event.LoginEvent
 import com.example.teamup.auth.presentation.ui.event.RecoverAccountEvent
 import com.example.teamup.auth.presentation.viewmodel.RecoverAccountViewModel
 import com.example.teamup.databinding.FragmentRecoverAccountBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class RecoverAccountFragment : Fragment() {
     private var binding: FragmentRecoverAccountBinding? = null
     private val viewModel:RecoverAccountViewModel by viewModels()

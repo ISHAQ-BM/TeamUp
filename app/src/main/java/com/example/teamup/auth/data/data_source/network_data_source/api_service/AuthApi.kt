@@ -11,12 +11,12 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthApi {
-    @POST("auth/login")
+    @POST("v2/auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest,
     ): Response<Unit>
 
-    @POST("auth/refresh")
+    @POST("v2/auth/refresh")
     suspend fun refreshAccessToken(
         @Body refreshToken:String,
     ): TokenResponse
@@ -24,36 +24,36 @@ interface AuthApi {
 
 
 
-    @POST("auth/register")
+    @POST("v2/auth/register")
     suspend fun register(
         @Body registerRequest: RegisterRequest,
     ): Response<Unit>
 
-    @POST("auth/confirmEmail")
+    @POST("v2/auth/confirmEmail")
     suspend fun confirmEmail(
         @Body confirmEmailRequest: ConfirmEmailRequest
     ): Response<Unit>
 
-    @POST("auth/google")
+    @POST("v2/auth/google")
     suspend fun signWithGoogle(
         @Body idToken: String
     ): Response<Unit>
 
-    @POST("auth/forgotPassword")
+    @POST("v2/auth/forgotPassword")
     suspend fun forgotPassword(
         @Body email:String
     ): Response<Unit>
 
-    @POST("auth/resendConfirmationEmail")
+    @POST("v2/auth/resendConfirmationEmail")
     suspend fun sendEmailVerification(
         @Body email:String
     ): Response<Unit>
-    @POST("auth/exchangeResetCodeForToken")
+    @POST("v3/auth/exchangeResetCodeForToken")
     suspend fun exchangeResetCodeForToken(
         @Body exchangeResetCodeRequest: ExchangeResetCodeRequest
     ):Response<String>
 
-    @POST("auth/resetPassword")
+    @POST("v3/auth/resetPassword")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<Unit>
