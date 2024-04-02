@@ -6,12 +6,14 @@ import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.RecoverAccountEvent
 import com.example.teamup.auth.presentation.ui.state.RecoverEmailUiState
 import com.example.teamup.core.model.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class RecoverAccountViewModel @Inject constructor(
     private val authUseCase: AuthUseCase
 ):ViewModel() {

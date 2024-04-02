@@ -7,13 +7,13 @@ class ValidateFullNameUseCase {
         if (fullName.isBlank()){
             return ValidationResult(
                 successful = false,
-                errorMessage = "The email can't be blank"
+                errorMessage = "The full name can't be blank"
             )
         }
         if (fullName.isEmpty()){
             return ValidationResult(
                 successful = false,
-                errorMessage = "The email can't be empty"
+                errorMessage = "The full name can't be empty"
             )
         }
         return ValidationResult(

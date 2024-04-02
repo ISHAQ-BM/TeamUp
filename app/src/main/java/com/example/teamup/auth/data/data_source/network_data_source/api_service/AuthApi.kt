@@ -2,6 +2,8 @@ package com.example.teamup.auth.data.data_source.network_data_source.api_service
 
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeResponse
+import com.example.teamup.auth.data.data_source.network_data_source.model.ForgotPasswordRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
@@ -26,7 +28,7 @@ interface AuthApi {
 
     @POST("v2/auth/register")
     suspend fun register(
-        @Body registerRequest: RegisterRequest,
+        @Body registerRequest: RegisterRequest
     ): Response<Unit>
 
     @POST("v2/auth/confirmEmail")
@@ -41,7 +43,7 @@ interface AuthApi {
 
     @POST("v2/auth/forgotPassword")
     suspend fun forgotPassword(
-        @Body email:String
+        @Body forgotPasswordRequest: ForgotPasswordRequest
     ): Response<Unit>
 
     @POST("v2/auth/resendConfirmationEmail")
@@ -51,7 +53,7 @@ interface AuthApi {
     @POST("v3/auth/exchangeResetCodeForToken")
     suspend fun exchangeResetCodeForToken(
         @Body exchangeResetCodeRequest: ExchangeResetCodeRequest
-    ):Response<String>
+    ):Response<ExchangeResetCodeResponse>
 
     @POST("v3/auth/resetPassword")
     suspend fun resetPassword(

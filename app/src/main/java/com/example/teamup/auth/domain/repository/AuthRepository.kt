@@ -1,5 +1,6 @@
 package com.example.teamup.auth.domain.repository
 
+import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeResponse
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ interface AuthRepository {
 
     suspend fun initiateGoogleOneTapFlow(): Flow<Resource<BeginSignInResult>>
 
-    suspend fun exchangeResetCodeForToken(email: String,code: String):Flow<Resource<String>>
+    suspend fun exchangeResetCodeForToken(email: String,code: String):Flow<Resource<ExchangeResetCodeResponse>>
 
     suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>>
 

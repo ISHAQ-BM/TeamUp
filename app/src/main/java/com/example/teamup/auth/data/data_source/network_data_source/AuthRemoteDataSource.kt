@@ -6,6 +6,8 @@ import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeResponse
+import com.example.teamup.auth.data.data_source.network_data_source.model.ForgotPasswordRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
@@ -43,7 +45,7 @@ constructor(
     suspend fun exchangeResetCodeForToken(
         email:String,
         code: String
-    ):Flow<Resource<String>> = safeApiCall { authApi.exchangeResetCodeForToken(
+    ):Flow<Resource<ExchangeResetCodeResponse>> = safeApiCall { authApi.exchangeResetCodeForToken(
         ExchangeResetCodeRequest(email, code)
     ) }
 
@@ -65,7 +67,7 @@ constructor(
 
     suspend fun sendPasswordResetEmail(email: String): Flow<Resource<Unit>> =
         safeApiCall {
-            authApi.forgotPassword(email)
+            authApi.forgotPassword(ForgotPasswordRequest(email))
         }
 
     suspend fun initiateGoogleOneTapFlow() :Flow<Resource<BeginSignInResult>> =

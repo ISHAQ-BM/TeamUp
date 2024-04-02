@@ -11,16 +11,25 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_recoverAccountFragment"
-            app:destination="@id/recoverAccountFragment" />
+            app:destination="@id/recoverAccountFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
         <action
             android:id="@+id/action_loginFragment_to_emailConfirmationFragment"
             app:destination="@id/emailConfirmationFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_emailVerificationFragment"
-            app:destination="@id/emailVerificationFragment" />
+            android:id="@+id/action_loginFragment_to_emailConfirmationFragment2"
+            app:destination="@id/emailConfirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -29,10 +38,21 @@
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_signUpFragment_to_emailConfirmationFragment"
-            app:destination="@id/emailConfirmationFragment" />
+            app:destination="@id/emailConfirmationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
+        />
     </fragment>
     <fragment
         android:id="@+id/emailConfirmationFragment"
@@ -41,7 +61,12 @@
         tools:layout="@layout/fragment_email_confirmation" >
         <action
             android:id="@+id/action_emailConfirmationFragment_to_onboardingFragment1"
-            app:destination="@id/onboardingFragment1" />
+            app:destination="@id/onboardingFragment1"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
         <argument android:name="email"
             app:argType="string" />
     </fragment>
@@ -52,7 +77,12 @@
         tools:layout="@layout/fragment_onboarding1" >
         <action
             android:id="@+id/action_onboardingFragment1_to_onboardingFragment2"
-            app:destination="@id/onboardingFragment2" />
+            app:destination="@id/onboardingFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment2"
@@ -61,7 +91,12 @@
         tools:layout="@layout/fragment_onboarding2" >
         <action
             android:id="@+id/action_onboardingFragment2_to_onboardingFragment3"
-            app:destination="@id/onboardingFragment3" />
+            app:destination="@id/onboardingFragment3"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment3"
@@ -75,7 +110,12 @@
         tools:layout="@layout/fragment_email_verification" >
         <action
             android:id="@+id/action_emailVerificationFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            app:destination="@id/resetPasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
         <argument
             android:name="email"
             app:argType="string" />
@@ -87,7 +127,12 @@
         tools:layout="@layout/fragment_recover_account" >
         <action
             android:id="@+id/action_recoverAccountFragment_to_emailVerificationFragment"
-            app:destination="@id/emailVerificationFragment" />
+            app:destination="@id/emailVerificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"

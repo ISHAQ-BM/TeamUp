@@ -49,6 +49,7 @@ class SignUpViewModel @Inject constructor(
             }
             is SignUpEvent.SignUpClicked-> {
                 if (isUserInputsValid()){
+                    Log.d("error","input  valide")
                     signUpWithEmailAndPassword()
                 }
 

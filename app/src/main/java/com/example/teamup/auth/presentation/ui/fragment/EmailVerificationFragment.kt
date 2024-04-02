@@ -47,8 +47,8 @@ class EmailVerificationFragment : Fragment() {
 
 
             override fun onOTPComplete(otp: String) {
-                binding?.code?.otp?.let { EmailVerificationEvent.CodeChanged(it) }
-                    ?.let { viewModel.onEvent(it) }
+
+                viewModel.onEvent(EmailVerificationEvent.CodeChanged(otp))
             }
         }
 

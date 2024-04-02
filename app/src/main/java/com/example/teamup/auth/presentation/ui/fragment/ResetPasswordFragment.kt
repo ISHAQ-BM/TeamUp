@@ -1,23 +1,20 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.IntentSenderRequest
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.example.teamup.auth.presentation.ui.event.EmailVerificationEvent
-import com.example.teamup.auth.presentation.ui.event.LoginEvent
 import com.example.teamup.auth.presentation.ui.event.ResetPasswordEvent
 import com.example.teamup.auth.presentation.viewmodel.ResetPasswordViewModel
 import com.example.teamup.databinding.FragmentResetPasswordBinding
-import com.google.android.gms.auth.api.identity.BeginSignInResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -66,6 +63,11 @@ class ResetPasswordFragment : Fragment() {
                 clearPasswordError()
             }
         }
+
+        binding?.resetPassword?.setOnClickListener {
+            clearInputFieldFocus()
+            viewModel.onEvent(ResetPasswordEvent.ResetPasswordClicked)
+        }
     }
 
     private fun clearInputFieldFocus() {
@@ -96,7 +98,9 @@ class ResetPasswordFragment : Fragment() {
 
     private fun handleResetPasswordSuccess(isResetPasswordSuccess: Boolean) {
         if (isResetPasswordSuccess)
-            Toast.makeText(requireContext(),"success", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),"success wa33333", Toast.LENGTH_LONG).show()
+
+
     }
 
 

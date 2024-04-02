@@ -6,12 +6,14 @@ import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.EmailVerificationEvent
 import com.example.teamup.auth.presentation.ui.state.EmailVerificationUiState
 import com.example.teamup.core.model.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class EmailVerificationViewModel @Inject constructor(
     private val authUseCase: AuthUseCase
 ):ViewModel() {
@@ -44,7 +46,7 @@ class EmailVerificationViewModel @Inject constructor(
                     is Resource.Success -> {
                         _uiState.update {
                             it.copy(
-                                token = result.data!!,
+                                token = result.data?.resetToken?:"",
                                 isLoading = false,
                                 isVerifySuccessful = true,
 

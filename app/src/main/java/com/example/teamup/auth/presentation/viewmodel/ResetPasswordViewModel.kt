@@ -1,17 +1,20 @@
 package com.example.teamup.auth.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.presentation.ui.event.ResetPasswordEvent
 import com.example.teamup.auth.presentation.ui.state.ResetPasswordUiState
 import com.example.teamup.core.model.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ResetPasswordViewModel @Inject constructor(
     private val authUseCase: AuthUseCase
 ):ViewModel(){
@@ -66,19 +69,20 @@ class ResetPasswordViewModel @Inject constructor(
                     }
 
                     is Resource.Success -> {
+                        Log.d("error","viewModel success")
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 isResetPasswordSuccessful = true
                             )
                         }
+                        Log.d("error","viewModel ${_uiState.value.isResetPasswordSuccessful}")
                     }
 
                     is Resource.Error -> {
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
-                                isResetPasswordSuccessful = false,
                                 generalErrorMessage = result.message
                             )
                         }
