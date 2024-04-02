@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_emailVerificationFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/recoverAccountFragment"

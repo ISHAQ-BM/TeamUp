@@ -39,7 +39,7 @@ class LoginViewModel @Inject constructor(
             }
 
             is LoginEvent.GoogleIdTokenChanged -> {
-
+                _uiState.update { it.copy(googleIdToken = event.googleIdToken) }
                 signUserWithGoogle()
             }
 
@@ -135,35 +135,7 @@ class LoginViewModel @Inject constructor(
     }
 
 
-    /*private fun sendResetPasswordEmail() {
-        _uiState.value = _uiState.value?.copy(
-            isLoading = true
-        )
-        viewModelScope.launch {
 
-            authUseCase.forgotPasswordUseCase(
-                _uiState.value?.email!!,
-
-                ).also {
-                when(it){
-                    is Resource.Success ->{
-                        _uiState.value=_uiState.value?.copy(
-                            isLoading = false,
-                        )
-                        Log.d("email sended","successs")
-                    }
-                    is Resource.Error -> {
-                        _uiState.value=_uiState.value!!.copy(
-                            isLoading = false
-                        )
-                    }
-
-                    is Resource.Loading -> TODO()
-                }
-            }
-        }
-    }
-    */
     private fun validateEmail(): Boolean {
         val emailValidationResult = authUseCase.validateEmailUseCase(_uiState.value.email)
         val hasError = !emailValidationResult.successful

@@ -50,15 +50,22 @@ constructor(
     override suspend fun initiateGoogleOneTapFlow(): Flow<Resource<BeginSignInResult>> =
         authRemoteDataSource.initiateGoogleOneTapFlow()
 
+    override suspend fun exchangeResetCodeForToken(
+        email: String,
+        code: String
+    ): Flow<Resource<String>> =
+        authRemoteDataSource.exchangeResetCodeForToken(email, code)
+
+
 
     override suspend fun confirmEmail(email: String, code: String): Flow<Resource<Unit>> =
          authRemoteDataSource.confirmEmail(email,code)
 
     override suspend fun resetPassword(
         email: String,
-        resetCode: String,
+        resetToken: String,
         newPassword: String
     ): Flow<Resource<Unit>> =
-         authRemoteDataSource.resetPassword(email, resetCode, newPassword)
+         authRemoteDataSource.resetPassword(email, resetToken, newPassword)
 
 }

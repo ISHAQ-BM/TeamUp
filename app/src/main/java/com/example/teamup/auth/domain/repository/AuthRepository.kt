@@ -16,9 +16,11 @@ interface AuthRepository {
 
     suspend fun initiateGoogleOneTapFlow(): Flow<Resource<BeginSignInResult>>
 
+    suspend fun exchangeResetCodeForToken(email: String,code: String):Flow<Resource<String>>
+
     suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>>
 
-    suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Flow<Resource<Unit>>
+    suspend fun resetPassword(email:String,resetToken:String,newPassword:String): Flow<Resource<Unit>>
 
 
 

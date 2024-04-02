@@ -55,6 +55,7 @@ class SignUpViewModel @Inject constructor(
             }
 
             is SignUpEvent.GoogleIdTokenChanged -> {
+                _uiState.update { it.copy(googleIdToken = event.googleIdToken) }
                 signUserWithGoogle()
             }
         }

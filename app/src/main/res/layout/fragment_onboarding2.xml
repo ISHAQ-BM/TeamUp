@@ -52,7 +52,6 @@
 
             app:chipSpacingHorizontal="@dimen/_9sdp"
             app:chipSpacingVertical="@dimen/_9sdp"
-            app:selectionRequired="true"
             app:singleSelection="true"
             android:layout_marginTop="@dimen/_46sdp"
 
@@ -62,7 +61,6 @@
                 style="@style/Widget.TeamUp.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
-                android:checked="true"
                 android:text="@string/beginner"
                 app:chipStartPadding="0dp"
                 android:textAlignment="center" />

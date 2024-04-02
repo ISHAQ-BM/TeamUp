@@ -1,6 +1,7 @@
 package com.example.teamup.auth.data.data_source.network_data_source.api_service
 
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
@@ -35,7 +36,7 @@ interface AuthApi {
 
     @POST("auth/google")
     suspend fun signWithGoogle(
-        @Body googleIdToken:String
+        @Body idToken: String
     ): Response<Unit>
 
     @POST("auth/forgotPassword")
@@ -47,6 +48,10 @@ interface AuthApi {
     suspend fun sendEmailVerification(
         @Body email:String
     ): Response<Unit>
+    @POST("auth/exchangeResetCodeForToken")
+    suspend fun exchangeResetCodeForToken(
+        @Body exchangeResetCodeRequest: ExchangeResetCodeRequest
+    ):Response<String>
 
     @POST("auth/resetPassword")
     suspend fun resetPassword(

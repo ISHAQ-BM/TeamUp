@@ -1,9 +1,11 @@
 package com.example.teamup.auth.data.data_source.network_data_source
 
+import android.util.Log
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
 import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
@@ -35,7 +37,16 @@ constructor(
 
     suspend fun signUserWithGoogle(
         googleIdToken:String
+
     ):Flow<Resource<Unit>> = safeApiCall { authApi.signWithGoogle(googleIdToken) }
+
+    suspend fun exchangeResetCodeForToken(
+        email:String,
+        code: String
+    ):Flow<Resource<String>> = safeApiCall { authApi.exchangeResetCodeForToken(
+        ExchangeResetCodeRequest(email, code)
+    ) }
+
 
 
 
@@ -44,9 +55,7 @@ constructor(
         fullName:String,
         email: String,
         password: String,
-    ): Flow<Resource<Unit>> =
-
-            safeApiCall { authApi.register(RegisterRequest(fullName,email, password))}
+    ): Flow<Resource<Unit>> = safeApiCall { authApi.register(RegisterRequest(fullName,email, password))}
 
 
     suspend fun sendEmailVerification(email:String): Flow<Resource<Unit>> =
