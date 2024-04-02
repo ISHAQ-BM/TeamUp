@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/onboardingFragment1">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.teamup.auth.presentation.ui.fragment.LoginFragment"
@@ -23,14 +23,11 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
-        />
+
         <action
             android:id="@+id/action_loginFragment_to_emailConfirmationFragment"
             app:destination="@id/emailConfirmationFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_emailConfirmationFragment2"
-            app:destination="@id/emailConfirmationFragment" />
-    </fragment>
+        </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.teamup.auth.presentation.ui.fragment.SignUpFragment"
