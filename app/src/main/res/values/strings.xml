@@ -50,4 +50,10 @@
     <string name="sign_up_with_google_account">Sign Up with Google account</string>
     <string name="sign_up_with_linkedin_account">Sign Up with LinkedIn account</string>
     <string name="sign_up_with_github_account">Sign Up with Github account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
+    <string name="profile">Profile</string>
+    <string name="chat">Chat</string>
 </resources>

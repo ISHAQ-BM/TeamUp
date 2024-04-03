@@ -39,7 +39,7 @@ class OnboardingFragment3 : Fragment() {
         }
 
         binding?.skip?.setOnClickListener {
-
+            findNavController().navigate(R.id.action_onboardingFragment3_to_bottom_nav_graph)
         }
 
         binding?.back?.setOnClickListener {
@@ -62,7 +62,7 @@ class OnboardingFragment3 : Fragment() {
     private fun handleNextClicked(){
         viewModel.onEvent(ThirdOnboardingQuestionEvent.NextClicked)
         if (viewModel.uiState.value.selectedChoiceIndex != -1){
-
+            findNavController().navigate(R.id.action_onboardingFragment3_to_bottom_nav_graph)
         }else {
             Toast.makeText(requireContext(),viewModel.uiState.value.generalErrorMessage, Toast.LENGTH_SHORT).show()
         }
