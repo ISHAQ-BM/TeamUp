@@ -64,6 +64,13 @@ class EmailVerificationFragment : Fragment() {
         binding?.next?.setOnClickListener {
             viewModel.onEvent(EmailVerificationEvent.NextClicked)
         }
+        binding?.back?.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding?.resendCode?.setOnClickListener {
+            viewModel.onEvent(EmailVerificationEvent.ResendCodeClicked)
+        }
 
     }
 

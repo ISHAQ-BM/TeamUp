@@ -51,6 +51,12 @@ class EmailConfirmationFragment : Fragment() {
             }
         }
 
+        binding?.code?.requestFocusOTP()
+
+        binding?.back?.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding?.code?.otpListener = object : OTPListener {
             override fun onInteractionListener() {
 
@@ -70,6 +76,7 @@ class EmailConfirmationFragment : Fragment() {
         binding?.resendCode?.setOnClickListener {
             viewModel.onEvent(EmailConfirmationEvent.ResendCodeClicked)
         }
+
 
     }
 

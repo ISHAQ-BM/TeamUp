@@ -5,4 +5,6 @@ sealed class EmailVerificationEvent {
 
     data class EmailChanged(val email:String):EmailVerificationEvent()
     data class CodeChanged(val code:String):EmailVerificationEvent()
+
+    data object ResendCodeClicked:EmailVerificationEvent()
 }

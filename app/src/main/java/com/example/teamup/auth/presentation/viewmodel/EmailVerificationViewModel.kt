@@ -32,8 +32,15 @@ class EmailVerificationViewModel @Inject constructor(
             is EmailVerificationEvent.EmailChanged ->{
                 _uiState.update { it.copy(email = event.email) }
             }
+
+            EmailVerificationEvent.ResendCodeClicked -> {
+
+                resendCode()
+            }
         }
     }
+
+    private fun resendCode() {}
 
     private fun verifyEmail() {
         viewModelScope.launch {

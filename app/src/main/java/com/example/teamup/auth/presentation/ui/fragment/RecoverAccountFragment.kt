@@ -42,6 +42,9 @@ class RecoverAccountFragment : Fragment() {
                 }
             }
         }
+        binding?.back?.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding?.email?.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
