@@ -40,6 +40,8 @@ class EmailConfirmationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.onEvent(EmailConfirmationEvent.EmailChanged(args.email))
+
         binding?.tvSentCode?.text=getString(R.string.we_ve_sent_a_code,args.email)
 
         viewLifecycleOwner.lifecycleScope.launch {

@@ -11,6 +11,7 @@ import com.example.teamup.auth.data.data_source.network_data_source.model.Forgot
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.SignWithGoogleRequest
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -40,7 +41,7 @@ constructor(
     suspend fun signUserWithGoogle(
         googleIdToken:String
 
-    ):Flow<Resource<Unit>> = safeApiCall { authApi.signWithGoogle(googleIdToken) }
+    ):Flow<Resource<Unit>> = safeApiCall { authApi.signWithGoogle(SignWithGoogleRequest(googleIdToken)) }
 
     suspend fun exchangeResetCodeForToken(
         email:String,
@@ -79,10 +80,14 @@ constructor(
             }
         }
 
-    suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>> =
-        safeApiCall {
+    suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>> {
+        Log.d("email",email)
+        Log.d("code",code)
+        return   safeApiCall {
             authApi.confirmEmail(ConfirmEmailRequest(email,code))
         }
+    }
+
 
     suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Flow<Resource<Unit>> =
         safeApiCall {

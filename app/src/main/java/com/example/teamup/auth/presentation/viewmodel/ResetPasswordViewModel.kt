@@ -69,15 +69,13 @@ class ResetPasswordViewModel @Inject constructor(
                     }
 
                     is Resource.Success -> {
-                        Log.d("error","viewModel success")
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 isResetPasswordSuccessful = true
                             )
                         }
-                        Log.d("error","viewModel ${_uiState.value.isResetPasswordSuccessful}")
-                    }
+                        }
 
                     is Resource.Error -> {
                         _uiState.update {

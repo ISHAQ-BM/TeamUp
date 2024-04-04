@@ -49,7 +49,6 @@ class SignUpViewModel @Inject constructor(
             }
             is SignUpEvent.SignUpClicked-> {
                 if (isUserInputsValid()){
-                    Log.d("error","input  valide")
                     signUpWithEmailAndPassword()
                 }
 
@@ -59,6 +58,13 @@ class SignUpViewModel @Inject constructor(
                 _uiState.update { it.copy(googleIdToken = event.googleIdToken) }
                 signUserWithGoogle()
             }
+        }
+    }
+
+    fun resetState(){
+        _uiState.update {
+            it.copy(isSignUpSuccessful = false,
+            )
         }
     }
 

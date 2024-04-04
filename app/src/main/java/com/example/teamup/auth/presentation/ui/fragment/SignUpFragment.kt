@@ -144,6 +144,7 @@ class SignUpFragment : Fragment() {
 
     private fun handleSignUpSuccess(isSignUpSuccess: Boolean) {
         if (isSignUpSuccess){
+            viewModel.resetState()
             val action=SignUpFragmentDirections.actionSignUpFragmentToEmailConfirmationFragment(viewModel.uiState.value.email)
             findNavController().navigate(action)
         }

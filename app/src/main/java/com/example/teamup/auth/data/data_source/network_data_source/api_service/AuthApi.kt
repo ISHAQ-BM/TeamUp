@@ -7,6 +7,7 @@ import com.example.teamup.auth.data.data_source.network_data_source.model.Forgot
 import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
+import com.example.teamup.auth.data.data_source.network_data_source.model.SignWithGoogleRequest
 import com.example.teamup.auth.data.data_source.network_data_source.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -38,7 +39,7 @@ interface AuthApi {
 
     @POST("v2/auth/google")
     suspend fun signWithGoogle(
-        @Body idToken: String
+        @Body signWithGoogleRequest: SignWithGoogleRequest
     ): Response<Unit>
 
     @POST("v2/auth/forgotPassword")

@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/inputLayout_email"
             android:layout_marginTop="@dimen/_2sdp"
-            app:endIconMode="clear_text"
             style="@style/Widget.TeamUp.TextInputLayout.FillBox"
             app:layout_constraintTop_toBottomOf="@id/tv_email">
 

@@ -55,7 +55,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/inputLayout_email"
-            app:endIconMode="clear_text"
             android:layout_marginTop="@dimen/_2sdp"
             style="@style/Widget.TeamUp.TextInputLayout.FillBox"
             app:layout_constraintTop_toBottomOf="@id/tv_email">

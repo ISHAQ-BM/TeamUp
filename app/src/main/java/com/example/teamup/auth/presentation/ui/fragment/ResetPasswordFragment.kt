@@ -98,7 +98,7 @@ class ResetPasswordFragment : Fragment() {
 
     private fun handleResetPasswordSuccess(isResetPasswordSuccess: Boolean) {
         if (isResetPasswordSuccess)
-            Toast.makeText(requireContext(),"success wa33333", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),"Your password has been reset successfully.", Toast.LENGTH_LONG).show()
 
 
     }

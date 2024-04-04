@@ -31,6 +31,7 @@ class RecoverAccountFragment : Fragment() {
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,6 +74,7 @@ class RecoverAccountFragment : Fragment() {
 
     private fun handleRecoverAccountSuccess(isRecoverSuccess: Boolean) {
         if (isRecoverSuccess){
+            viewModel.resetState()
             val action=RecoverAccountFragmentDirections.actionRecoverAccountFragmentToEmailVerificationFragment(viewModel.uiState.value.email)
             findNavController().navigate(action)
         }

@@ -35,6 +35,13 @@ class RecoverAccountViewModel @Inject constructor(
         }
     }
 
+    fun resetState(){
+        _uiState.update {
+            it.copy(isRecoverSuccessful = false,
+                )
+        }
+    }
+
     private fun validateEmail(): Boolean {
         val emailValidationResult = authUseCase.validateEmailUseCase(_uiState.value.email)
         val hasError = !emailValidationResult.successful

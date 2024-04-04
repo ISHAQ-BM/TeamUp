@@ -36,7 +36,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout_full_name"
             android:layout_width="match_parent"
-            app:endIconMode="clear_text"
             style="@style/Widget.TeamUp.TextInputLayout.FillBox"
 
             android:layout_marginTop="@dimen/_2sdp"
@@ -66,7 +65,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/inputLayout_email"
-            app:endIconMode="clear_text"
 
             android:layout_marginTop="@dimen/_2sdp"
             style="@style/Widget.TeamUp.TextInputLayout.FillBox"
