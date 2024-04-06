@@ -2,8 +2,8 @@ package com.example.teamup.auth.data.repository
 
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
-import com.example.teamup.auth.data.data_source.network_data_source.AuthRemoteDataSource
-import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeResponse
+import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
+import com.example.teamup.auth.data.source.remote.model.ExchangeResetCodeResponse
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest

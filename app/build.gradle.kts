@@ -100,6 +100,9 @@ dependencies {
     // otp view
     implementation ("com.github.appsfeature:otp-view:1.0")
 
+    // datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
 
 
 

@@ -1,19 +1,19 @@
-package com.example.teamup.auth.data.data_source.network_data_source.api_service
+package com.example.teamup.auth.data.source.remote
 
-import com.example.teamup.auth.data.data_source.network_data_source.model.ConfirmEmailRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.ExchangeResetCodeResponse
-import com.example.teamup.auth.data.data_source.network_data_source.model.ForgotPasswordRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.LoginRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.RegisterRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.ResetPasswordRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.SignWithGoogleRequest
-import com.example.teamup.auth.data.data_source.network_data_source.model.TokenResponse
+import com.example.teamup.auth.data.source.remote.model.ConfirmEmailRequest
+import com.example.teamup.auth.data.source.remote.model.ExchangeResetCodeRequest
+import com.example.teamup.auth.data.source.remote.model.ExchangeResetCodeResponse
+import com.example.teamup.auth.data.source.remote.model.ForgotPasswordRequest
+import com.example.teamup.auth.data.source.remote.model.LoginRequest
+import com.example.teamup.auth.data.source.remote.model.RegisterRequest
+import com.example.teamup.auth.data.source.remote.model.ResetPasswordRequest
+import com.example.teamup.auth.data.source.remote.model.SignWithGoogleRequest
+import com.example.teamup.auth.data.source.remote.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface AuthApi {
+interface AuthNetwork {
     @POST("v2/auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest,

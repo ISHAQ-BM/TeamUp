@@ -4,9 +4,10 @@ import android.content.Context
 import com.example.teamup.BuildConfig
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
-import com.example.teamup.auth.data.data_source.network_data_source.AuthRemoteDataSource
-import com.example.teamup.auth.data.data_source.network_data_source.api_service.AuthApi
+import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
+import com.example.teamup.auth.data.source.remote.AuthNetwork
 import com.example.teamup.auth.data.repository.AuthRepositoryImpl
+import com.example.teamup.auth.data.source.remote.AuthRemoteDataSourceImpl
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
@@ -41,27 +42,15 @@ import javax.inject.Singleton
 object AuthModule {
     @Provides
     @Singleton
-    fun provideAuthApi(): AuthApi {
+    fun provideAuthApi(): AuthNetwork {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
-            .create(AuthApi::class.java)
+            .create(AuthNetwork::class.java)
     }
 
 
-    @Provides
-    @Singleton
-    fun provideAuthRemoteDataSource(
-        authApi: AuthApi,
-        oneTapClient: SignInClient,
-        @Named(SIGN_IN_REQUEST)
-        signUpRequest: BeginSignInRequest,
-        @Named(SIGN_UP_REQUEST)
-        signInRequest: BeginSignInRequest
-    ): AuthRemoteDataSource {
-        return AuthRemoteDataSource(authApi, oneTapClient, signUpRequest, signInRequest)
-    }
 
 
     @Singleton
@@ -202,5 +191,13 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DataSourceModule {
+    @Binds
+    @Singleton
+    abstract fun bindAuthDataSource(authRemoteDataSourceImpl: AuthRemoteDataSourceImpl): AuthRemoteDataSource
 }
 
