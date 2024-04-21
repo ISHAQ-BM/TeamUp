@@ -11,6 +11,7 @@ import com.example.teamup.auth.data.source.remote.model.LoginRequest
 import com.example.teamup.auth.data.source.remote.model.RegisterRequest
 import com.example.teamup.auth.data.source.remote.model.ResetPasswordRequest
 import com.example.teamup.auth.data.source.remote.model.SignWithGoogleRequest
+import com.example.teamup.auth.data.source.remote.model.TokenResponse
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -23,7 +24,7 @@ import javax.inject.Named
 
 class AuthRemoteDataSourceImpl @Inject
 constructor(
-    private val authApi: AuthNetwork,
+    private val authApi: AuthApi,
     private val oneTapClient: SignInClient,
     @Named(SIGN_IN_REQUEST)
     private val signUpRequest: BeginSignInRequest,
@@ -92,4 +93,5 @@ constructor(
         safeApiCall {
             authApi.resetPassword(ResetPasswordRequest(email, resetCode, newPassword))
         }
-}
+
+   }

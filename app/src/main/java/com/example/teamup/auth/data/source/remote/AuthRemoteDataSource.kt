@@ -11,6 +11,7 @@ import com.example.teamup.auth.data.source.remote.model.LoginRequest
 import com.example.teamup.auth.data.source.remote.model.RegisterRequest
 import com.example.teamup.auth.data.source.remote.model.ResetPasswordRequest
 import com.example.teamup.auth.data.source.remote.model.SignWithGoogleRequest
+import com.example.teamup.auth.data.source.remote.model.TokenResponse
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -35,6 +36,7 @@ interface AuthRemoteDataSource {
     suspend fun confirmEmail(email:String,code:String): Flow<Resource<Unit>>
 
     suspend fun resetPassword(email:String,resetCode:String,newPassword:String): Flow<Resource<Unit>>
+    
 }
 
 

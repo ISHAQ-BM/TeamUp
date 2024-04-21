@@ -13,16 +13,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface AuthNetwork {
+interface AuthApi {
     @POST("v2/auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest,
     ): Response<Unit>
 
-    @POST("v2/auth/refresh")
-    suspend fun refreshAccessToken(
-        @Body refreshToken:String,
-    ): TokenResponse
 
 
 
