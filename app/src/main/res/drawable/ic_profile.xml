@@ -1,18 +1,5 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="28">
-  <path
-      android:pathData="M12,7.333m-5.333,0a5.333,5.333 0,1 1,10.667 0a5.333,5.333 0,1 1,-10.667 0"
-      android:strokeWidth="3.55556"
-      android:fillColor="#00000000"
-      android:strokeColor="#1C1A25"
-      android:strokeLineCap="round"/>
-  <path
-      android:pathData="M3.013,22.893C3.862,18.859 7.878,16.667 12,16.667V16.667C16.122,16.667 20.138,18.859 20.987,22.893C21.081,23.342 21.161,23.802 21.22,24.268C21.34,25.22 20.556,26 19.597,26H4.403C3.444,26 2.66,25.22 2.78,24.268C2.839,23.802 2.919,23.342 3.013,22.893Z"
-      android:strokeWidth="3.55556"
-      android:fillColor="#00000000"
-      android:strokeColor="#1C1A25"
-      android:strokeLineCap="round"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@drawable/ic_profile_contained" android:state_checked="true" />
+  <item android:drawable="@drawable/ic_profile_outlined" android:state_checked="false" />
+</selector>

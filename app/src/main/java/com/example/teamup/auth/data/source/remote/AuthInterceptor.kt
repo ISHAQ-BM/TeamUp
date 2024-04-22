@@ -1,7 +1,6 @@
 package com.example.teamup.auth.data.source.remote
 
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -9,7 +8,7 @@ import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(
     private val authLocalDataSource: AuthLocalDataSource,
-    val accessTokenManager: AccessTokenManager
+    private val accessTokenManager: AccessTokenManager
 ):Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

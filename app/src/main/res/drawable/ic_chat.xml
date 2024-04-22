@@ -1,25 +1,5 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="26"
-    android:viewportHeight="26">
-  <path
-      android:pathData="M2.333,13C2.333,7.109 7.109,2.333 13,2.333V2.333C18.891,2.333 23.667,7.109 23.667,13V19.788C23.667,20.088 23.667,20.238 23.658,20.365C23.531,22.128 22.128,23.531 20.365,23.658C20.238,23.667 20.088,23.667 19.788,23.667H13C7.109,23.667 2.333,18.891 2.333,13V13Z"
-      android:strokeWidth="3.55556"
-      android:fillColor="#00000000"
-      android:strokeColor="#1C1A25"/>
-  <path
-      android:pathData="M9,11.667L17,11.667"
-      android:strokeLineJoin="round"
-      android:strokeWidth="3.55556"
-      android:fillColor="#00000000"
-      android:strokeColor="#33363F"
-      android:strokeLineCap="round"/>
-  <path
-      android:pathData="M13,17H17"
-      android:strokeLineJoin="round"
-      android:strokeWidth="3.55556"
-      android:fillColor="#00000000"
-      android:strokeColor="#33363F"
-      android:strokeLineCap="round"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_chat_contained" android:state_checked="true" />
+    <item android:drawable="@drawable/ic_chat_outlined" android:state_checked="false" />
+</selector>
