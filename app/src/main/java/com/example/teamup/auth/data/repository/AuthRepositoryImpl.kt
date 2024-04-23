@@ -2,6 +2,7 @@ package com.example.teamup.auth.data.repository
 
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
+import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
 import com.example.teamup.auth.data.source.remote.model.ExchangeResetCodeResponse
 import com.example.teamup.auth.domain.repository.AuthRepository
@@ -17,6 +18,7 @@ class AuthRepositoryImpl
 @Inject
 constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
+    private val authLocalDataSource: AuthLocalDataSource,
     private val oneTapClient: SignInClient,
     @Named(SIGN_IN_REQUEST)
     private val signUpRequest: BeginSignInRequest,
@@ -26,8 +28,20 @@ constructor(
     override suspend fun loginWithEmailAndPassword(
         email: String,
         password: String,
-    ): Flow<Resource<Unit>> =
-         authRemoteDataSource.signInWithEmailAndPassword(email, password)
+    ): Flow<Resource<Unit>> = authRemoteDataSource.signInWithEmailAndPassword(email, password)
+
+    /*val response=authRemoteDataSource.signInWithEmailAndPassword(email, password)
+    response.collect{
+        result ->
+        when(result){
+            is Resource.Success -> {
+                result.data?.let { authLocalDataSource.updateAccessToken(it.accessToken) }
+                Log.d("access token",result.data?.accessToken.toString())}
+            else ->{Unit}
+        }
+    }
+    return response*/
+
 
 
 

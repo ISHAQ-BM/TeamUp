@@ -1,5 +1,6 @@
 package com.example.teamup.auth.data.source.remote
 
+import android.util.Log
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -13,7 +14,7 @@ class AuthInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val accessToken = accessTokenManager.getAccessToken()
-
+        Log.d("access token", accessToken.toString())
 
         if (accessToken != null && accessTokenManager.isAccessTokenExpired()) {
             val refreshToken = accessTokenManager.getRefreshToken()

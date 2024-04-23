@@ -14,10 +14,10 @@
             tools:layout="@layout/fragment_home" />
 
         <fragment
-            android:id="@+id/exploreFragment"
-            android:name="com.example.teamup.explore.presentation.ui.fragment.ExploreFragment"
-            android:label="fragment_explore"
-            tools:layout="@layout/fragment_explore" />
+            android:id="@+id/workspaceFragment"
+            android:name="com.example.teamup.workspace.presentation.ui.fragment.WorkspaceFragment"
+            android:label="fragment_workspace"
+            tools:layout="@layout/fragment_workspace" />
         <fragment
             android:id="@+id/chatFragment"
             android:name="com.example.teamup.chat.presentation.ui.fragment.ChatFragment"

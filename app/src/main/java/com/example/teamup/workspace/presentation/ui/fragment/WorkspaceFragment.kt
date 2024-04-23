@@ -1,14 +1,14 @@
-package com.example.teamup.explore.presentation.ui.fragment
+package com.example.teamup.workspace.presentation.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.teamup.databinding.FragmentExploreBinding
 
 
-class ExploreFragment : Fragment() {
+class WorkspaceFragment : Fragment() {
     private var binding: FragmentExploreBinding?=null
 
     override fun onCreateView(
