@@ -1,6 +1,6 @@
 package com.example.teamup.auth.data.source.remote
 
-import android.provider.Settings
+import android.util.Log
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -21,14 +21,16 @@ class AccessTokenManager @Inject constructor(
     }
 
     suspend fun refreshAccessToken(refreshToken:String): String? {
-        val response=accessTokenApi.refreshAccessToken(refreshToken)
+
+        val response = accessTokenApi.refreshAccessToken(RefreshTokenRequest(refreshToken))
         if (response.isSuccessful){
             response.body()?.accessToken?.let { authLocalDataSource.updateAccessToken(it) }
             response.body()?.refreshToken?.let { authLocalDataSource.updateRefreshToken(it) }
             response.body()?.expiresIn?.let { authLocalDataSource.updateAccessTokenExpirationTime(it+System.currentTimeMillis()) }
             return response.body()?.accessToken
-        }
-        return null
+        } else
+            Log.d("error response", "$response")
+        return response.body()?.accessToken
 
     }
 

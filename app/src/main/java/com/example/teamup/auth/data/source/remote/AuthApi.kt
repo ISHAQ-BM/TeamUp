@@ -9,15 +9,17 @@ import com.example.teamup.auth.data.source.remote.model.RegisterRequest
 import com.example.teamup.auth.data.source.remote.model.ResetPasswordRequest
 import com.example.teamup.auth.data.source.remote.model.SignWithGoogleRequest
 import com.example.teamup.auth.data.source.remote.model.TokenResponse
+import com.example.teamup.auth.data.source.remote.model.User
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthApi {
     @POST("v2/auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest,
-    ): Response<Unit>
+    ): Response<TokenResponse>
 
 
 
@@ -56,6 +58,9 @@ interface AuthApi {
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<Unit>
+
+    @GET("v2/auth/currenUser")
+    suspend fun currentUser(): Response<User>
 
 
 }

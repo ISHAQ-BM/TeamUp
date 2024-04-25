@@ -1,10 +1,12 @@
 package com.example.teamup.auth.data.repository
 
+import android.util.Log
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
 import com.example.teamup.auth.data.source.remote.model.ExchangeResetCodeResponse
+import com.example.teamup.auth.data.source.remote.model.TokenResponse
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -28,19 +30,27 @@ constructor(
     override suspend fun loginWithEmailAndPassword(
         email: String,
         password: String,
-    ): Flow<Resource<Unit>> = authRemoteDataSource.signInWithEmailAndPassword(email, password)
+    ): Flow<Resource<TokenResponse>> {
+        authRemoteDataSource.signInWithEmailAndPassword(email, password)
 
-    /*val response=authRemoteDataSource.signInWithEmailAndPassword(email, password)
+        val response = authRemoteDataSource.signInWithEmailAndPassword(email, password)
     response.collect{
         result ->
         when(result){
             is Resource.Success -> {
                 result.data?.let { authLocalDataSource.updateAccessToken(it.accessToken) }
-                Log.d("access token",result.data?.accessToken.toString())}
+                result.data?.let { authLocalDataSource.updateAccessTokenExpirationTime(it.expiresIn) }
+                result.data?.let { authLocalDataSource.updateRefreshToken(it.refreshToken) }
+                Log.d("access token", result.data?.accessToken.toString())
+                Log.d("access token refresh", result.data?.refreshToken.toString())
+                Log.d("access token expire", result.data?.expiresIn.toString())
+            }
+
             else ->{Unit}
         }
     }
-    return response*/
+        return response
+    }
 
 
 

@@ -60,6 +60,8 @@
     <string name="image_of_a_mentor">Image of a mentor</string>
     <string name="star_rating">Star rating</string>
     <string name="workspace">Workspace</string>
-    <string name="number_of_reviews">(%1$s reviews)</string>
+    <string name="number_of_reviews">(%1$d reviews)</string>
+    <string name="following">Following</string>
+    <string name="follow">Follow</string>
 
 </resources>

@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import java.lang.System.currentTimeMillis
 import javax.inject.Inject
 
 class AuthLocalDataSourceImpl @Inject constructor(
@@ -59,7 +60,7 @@ class AuthLocalDataSourceImpl @Inject constructor(
 
     override suspend fun updateAccessTokenExpirationTime(expireIn: Long) {
         dataStore.edit { preferences ->
-            preferences[ACCESS_TOKEN_EXPIRATION_TIME] = expireIn.toString()
+            preferences[ACCESS_TOKEN_EXPIRATION_TIME] = (expireIn + currentTimeMillis()).toString()
         }
     }
 }

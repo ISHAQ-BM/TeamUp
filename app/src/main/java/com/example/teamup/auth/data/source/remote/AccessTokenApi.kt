@@ -9,6 +9,6 @@ interface AccessTokenApi {
 
     @POST("v2/auth/refresh")
     suspend fun refreshAccessToken(
-        @Body refreshToken:String,
+        @Body refreshTokenRequest: RefreshTokenRequest
     ): Response<TokenResponse>
 }

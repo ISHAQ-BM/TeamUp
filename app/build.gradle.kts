@@ -96,6 +96,10 @@ dependencies {
     implementation ("com.intuit.sdp:sdp-android:1.1.1")
     implementation ("com.intuit.ssp:ssp-android:1.1.1")
 
+    //circular image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+
 
     // otp view
     implementation ("com.github.appsfeature:otp-view:1.0")

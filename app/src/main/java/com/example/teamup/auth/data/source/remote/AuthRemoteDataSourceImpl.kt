@@ -11,6 +11,8 @@ import com.example.teamup.auth.data.source.remote.model.LoginRequest
 import com.example.teamup.auth.data.source.remote.model.RegisterRequest
 import com.example.teamup.auth.data.source.remote.model.ResetPasswordRequest
 import com.example.teamup.auth.data.source.remote.model.SignWithGoogleRequest
+import com.example.teamup.auth.data.source.remote.model.TokenResponse
+import com.example.teamup.auth.data.source.remote.model.User
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -30,10 +32,14 @@ constructor(
     @Named(SIGN_UP_REQUEST)
     private val signInRequest: BeginSignInRequest,
 ) : AuthRemoteDataSource, BaseRemoteDataSource() {
+    override suspend fun getCurrentUser(): Flow<Resource<User>> =
+        safeApiCall { authApi.currentUser() }
+
+
     override suspend fun signInWithEmailAndPassword(
         email: String,
         password: String
-    ): Flow<Resource<Unit>> = safeApiCall { authApi.login(LoginRequest(email, password)) }
+    ): Flow<Resource<TokenResponse>> = safeApiCall { authApi.login(LoginRequest(email, password)) }
 
 
     override suspend fun signUserWithGoogle(googleIdToken: String): Flow<Resource<Unit>> =

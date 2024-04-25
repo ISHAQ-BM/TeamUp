@@ -2,44 +2,44 @@ package com.example.teamup.auth.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-
 import com.example.teamup.BuildConfig
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
-import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
-import com.example.teamup.auth.data.source.remote.AuthApi
 import com.example.teamup.auth.data.repository.AuthRepositoryImpl
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import com.example.teamup.auth.data.source.local.AuthLocalDataSourceImpl
 import com.example.teamup.auth.data.source.remote.AccessTokenApi
 import com.example.teamup.auth.data.source.remote.AccessTokenManager
+import com.example.teamup.auth.data.source.remote.AuthApi
 import com.example.teamup.auth.data.source.remote.AuthInterceptor
+import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
 import com.example.teamup.auth.data.source.remote.AuthRemoteDataSourceImpl
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
 import com.example.teamup.auth.domain.use_case.ExchangeResetCodeUseCase
 import com.example.teamup.auth.domain.use_case.ForgotPasswordUseCase
+import com.example.teamup.auth.domain.use_case.InitiateGoogleOneTapFlow
+import com.example.teamup.auth.domain.use_case.LoginWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.ResetPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SendVerificationEmailUseCase
-import com.example.teamup.auth.domain.use_case.LoginWithEmailAndPasswordUseCase
 import com.example.teamup.auth.domain.use_case.SignUpWithEmailAndPasswordUseCase
-import com.example.teamup.auth.domain.use_case.InitiateGoogleOneTapFlow
 import com.example.teamup.auth.domain.use_case.SignUserWithGoogleUseCse
 import com.example.teamup.auth.domain.use_case.ValidateConfirmationPasswordUseCase
 import com.example.teamup.auth.domain.use_case.ValidateEmailUseCase
 import com.example.teamup.auth.domain.use_case.ValidateFullNameUseCase
 import com.example.teamup.auth.domain.use_case.ValidatePasswordUseCase
+import com.example.teamup.main.data.repository.MainRepositoryImpl
+import com.example.teamup.main.domain.repository.MainRepository
+import com.example.teamup.main.domain.use_case.GetCurrentUserUseCase
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.internal.Contexts
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -148,6 +148,11 @@ object AuthModule {
     fun provideLogInWithEmailAndPasswordUseCase(authRepository: AuthRepository) =
         LoginWithEmailAndPasswordUseCase(authRepository)
 
+    @Singleton
+    @Provides
+    fun provideGetCurrentUserUseCase(mainRepository: MainRepository) =
+        GetCurrentUserUseCase(mainRepository)
+
 
     @Singleton
     @Provides
@@ -247,6 +252,10 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository
 }
 
 @Module
