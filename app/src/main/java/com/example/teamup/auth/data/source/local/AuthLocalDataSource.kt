@@ -1,7 +1,5 @@
 package com.example.teamup.auth.data.source.local
 
-import android.content.Context
-import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 
 interface AuthLocalDataSource {
@@ -16,5 +14,6 @@ interface AuthLocalDataSource {
     fun getAccessTokenExpirationTime(): Flow<Long?>
 
     suspend fun updateAccessTokenExpirationTime(expireIn: Long)
+
 
 }

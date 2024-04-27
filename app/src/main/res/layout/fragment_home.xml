@@ -33,25 +33,24 @@
         </com.google.android.material.appbar.MaterialToolbar>
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabMinWidth="@dimen/_90sdp"
             app:tabGravity="center">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/projects" />
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mentors" />
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/people" />
+                android:layout_height="wrap_content" />
 
 
         </com.google.android.material.tabs.TabLayout>
@@ -62,15 +61,14 @@
     <com.google.android.material.search.SearchView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_anchor="@id/search_bar"></com.google.android.material.search.SearchView>
+        app:layout_anchor="@id/search_bar" />
 
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

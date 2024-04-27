@@ -39,8 +39,8 @@ class MainViewModel @Inject constructor(
                         Log.d("test user", "${result.data}")
                         _uiState.update {
                             it.copy(
-                                isUserAuthenticated = true,
-                                isEmailVerified = result.data?.isEmailConfirmed
+                                isUserLoggedIn = true,
+                                isEmailConfirmed = result.data?.isEmailConfirmed
                             )
                         }
                     }

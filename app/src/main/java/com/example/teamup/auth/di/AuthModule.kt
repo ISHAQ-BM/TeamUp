@@ -85,8 +85,8 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideAuthInterceptor(authLocalDataSource: AuthLocalDataSource,accessTokenManager: AccessTokenManager): AuthInterceptor {
-        return AuthInterceptor(authLocalDataSource, accessTokenManager)
+    fun provideAuthInterceptor(accessTokenManager: AccessTokenManager): AuthInterceptor {
+        return AuthInterceptor(accessTokenManager)
     }
 
   @Provides

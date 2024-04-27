@@ -1,4 +1,4 @@
-package com.example.teamup.mentors.domain.model
+package com.example.teamup.mentors.data.source.remote.model
 
 data class Mentor(
     val id: String,
@@ -7,5 +7,5 @@ data class Mentor(
     val mentorProfileImageUrl: String,
     val averageRating: Double,
     val numberOfReviews: Int,
-    var isFollowing: Boolean,
+    val isFollowing: Boolean,
 )

@@ -11,25 +11,25 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.teamup.R
 import com.example.teamup.databinding.ItemMentorBinding
-import com.example.teamup.mentors.domain.model.Mentor
+import com.example.teamup.mentors.presentation.ui.state.MentorItemUiState
 import com.google.android.material.button.MaterialButton
 
-class MentorAdapter() : ListAdapter<Mentor, MentorAdapter.ViewHolder>(DiffCallback) {
+class MentorAdapter() : ListAdapter<MentorItemUiState, MentorAdapter.ViewHolder>(DiffCallback) {
     inner class ViewHolder(private val binding: ItemMentorBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(mentor: Mentor) {
+        fun bind(mentor: MentorItemUiState) {
             binding.apply {
                 mentorName.text = mentor.name
                 mentorProfession.text = mentor.profession
                 mentorImageProfile.load(
-                    mentor.mentorProfileImageUrl.toUri().buildUpon()?.scheme("https")?.build()
+                    mentor.profileImageUrl.toUri().buildUpon()?.scheme("https")?.build()
                 )
                 mentorAverageRating.text = mentor.averageRating.toString()
                 mentorNumberOfReviews.text = binding.root.context.resources.getString(
                     R.string.number_of_reviews,
-                    mentor.numberOfReviews
+                    mentor.reviewsNumber
                 )
                 if (mentor.isFollowing) {
                     follow.text = binding.root.context.getString(R.string.following)
@@ -76,12 +76,18 @@ class MentorAdapter() : ListAdapter<Mentor, MentorAdapter.ViewHolder>(DiffCallba
 
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<Mentor>() {
-        override fun areItemsTheSame(oldItem: Mentor, newItem: Mentor): Boolean {
+    object DiffCallback : DiffUtil.ItemCallback<MentorItemUiState>() {
+        override fun areItemsTheSame(
+            oldItem: MentorItemUiState,
+            newItem: MentorItemUiState
+        ): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Mentor, newItem: Mentor): Boolean {
+        override fun areContentsTheSame(
+            oldItem: MentorItemUiState,
+            newItem: MentorItemUiState
+        ): Boolean {
             return oldItem.name == newItem.name
         }
 

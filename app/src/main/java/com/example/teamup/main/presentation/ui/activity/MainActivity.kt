@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    if (uiState.isUserAuthenticated) {
+                    if (uiState.isUserLoggedIn) {
                         navController.navigate(R.id.bottom_nav_graph)
                     }
                 }
