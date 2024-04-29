@@ -2,6 +2,8 @@ package com.example.teamup.auth.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.dataStoreFile
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.teamup.BuildConfig
@@ -10,12 +12,14 @@ import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.repository.AuthRepositoryImpl
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import com.example.teamup.auth.data.source.local.AuthLocalDataSourceImpl
+import com.example.teamup.auth.data.source.local.UserSerializer
 import com.example.teamup.auth.data.source.remote.AccessTokenApi
 import com.example.teamup.auth.data.source.remote.AccessTokenManager
 import com.example.teamup.auth.data.source.remote.AuthApi
 import com.example.teamup.auth.data.source.remote.AuthInterceptor
 import com.example.teamup.auth.data.source.remote.AuthRemoteDataSource
 import com.example.teamup.auth.data.source.remote.AuthRemoteDataSourceImpl
+import com.example.teamup.auth.data.source.remote.model.User
 import com.example.teamup.auth.domain.repository.AuthRepository
 import com.example.teamup.auth.domain.use_case.AuthUseCase
 import com.example.teamup.auth.domain.use_case.ConfirmEmailUseCase
@@ -99,11 +103,30 @@ object AuthModule {
 
     private val Context.datastore : DataStore< Preferences> by  preferencesDataStore(name = "accessToken")
 
+
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext context:Context ): DataStore<Preferences> {
             return context.datastore
     }
+
+    @Provides
+    @Singleton
+    fun providesUserPreferencesDataStore(
+        @ApplicationContext context: Context,
+
+        userPreferencesSerializer: UserSerializer,
+    ): DataStore<User> =
+        DataStoreFactory.create(
+            serializer = userPreferencesSerializer,
+        ) {
+            context.dataStoreFile("user_preferences.pb")
+        }
+
+    @Provides
+    @Singleton
+    fun provideUserSerializer() = UserSerializer
+
 
 
 

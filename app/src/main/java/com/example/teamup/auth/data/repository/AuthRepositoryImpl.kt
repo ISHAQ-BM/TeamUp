@@ -1,6 +1,5 @@
 package com.example.teamup.auth.data.repository
 
-import android.util.Log
 import com.example.teamup.auth.core.SIGN_IN_REQUEST
 import com.example.teamup.auth.core.SIGN_UP_REQUEST
 import com.example.teamup.auth.data.source.local.AuthLocalDataSource
@@ -41,11 +40,8 @@ constructor(
                 result.data?.let { authLocalDataSource.updateAccessToken(it.accessToken) }
                 result.data?.let { authLocalDataSource.updateAccessTokenExpirationTime(it.expiresIn) }
                 result.data?.let { authLocalDataSource.updateRefreshToken(it.refreshToken) }
-                Log.d("access token", result.data?.accessToken.toString())
-                Log.d("access token refresh", result.data?.refreshToken.toString())
-                Log.d("access token expire", result.data?.expiresIn.toString())
-            }
 
+            }
             else ->{Unit}
         }
     }

@@ -1,5 +1,6 @@
 package com.example.teamup.main.presentation.ui.activity
 
+
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -12,16 +13,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.teamup.R
 import com.example.teamup.databinding.ActivityMainBinding
 import com.example.teamup.main.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
+
 
     val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,20 +32,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+
         viewModel.getCurrentUser()
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     if (uiState.isUserLoggedIn) {
-                        navController.navigate(R.id.bottom_nav_graph)
+                        navController.navigate(com.example.teamup.R.id.bottom_nav_graph)
                     }
                 }
             }
         }
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            supportFragmentManager.findFragmentById(com.example.teamup.R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
         binding?.bottomNavigation?.setupWithNavController(navHostFragment.findNavController())
@@ -51,10 +54,10 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment.findNavController().addOnDestinationChangedListener { _ , destination , _ ->
             when(destination.id){
-                R.id.homeFragment -> showBottomNav()
-                R.id.workspaceFragment -> showBottomNav()
-                R.id.chatFragment -> showBottomNav()
-                R.id.profileFragment -> showBottomNav()
+                com.example.teamup.R.id.homeFragment -> showBottomNav()
+                com.example.teamup.R.id.workspaceFragment -> showBottomNav()
+                com.example.teamup.R.id.chatFragment -> showBottomNav()
+                com.example.teamup.R.id.profileFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
 

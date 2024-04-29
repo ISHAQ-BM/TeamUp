@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
 
+    val userData: Flow<User>
     suspend fun getCurrentUser(): Flow<Resource<User>>
 }

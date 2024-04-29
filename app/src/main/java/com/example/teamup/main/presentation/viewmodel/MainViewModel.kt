@@ -26,6 +26,16 @@ class MainViewModel @Inject constructor(
     fun getCurrentUser() {
         viewModelScope.launch {
             getCurrentUserUseCase().collect { result ->
+                /*if (result.id != null){
+                    Log.d("test user", "${result}")
+                    _uiState.update {
+                        it.copy(
+                            isUserLoggedIn = true,
+                            isEmailConfirmed = result.isEmailConfirmed
+                        )
+                    }
+                }*/
+
                 when (result) {
                     is Resource.Error -> {
                         Log.d("test errorr", result.message.toString())
