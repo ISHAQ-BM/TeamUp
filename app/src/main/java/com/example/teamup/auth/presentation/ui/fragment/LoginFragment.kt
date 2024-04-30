@@ -2,14 +2,12 @@ package com.example.teamup.auth.presentation.ui.fragment
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,9 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.teamup.R
 import com.example.teamup.auth.presentation.ui.event.LoginEvent
-import com.example.teamup.auth.presentation.ui.state.LoginUiState
 import com.example.teamup.auth.presentation.viewmodel.LoginViewModel
-import com.example.teamup.core.model.Resource
 import com.example.teamup.databinding.FragmentLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.common.api.ApiException
@@ -42,7 +38,6 @@ class LoginFragment : Fragment() {
             try {
                 val credential = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
                 val googleIdToken = credential.googleIdToken!!
-                Log.d("token",googleIdToken)
                 viewModel.onEvent(LoginEvent.GoogleIdTokenChanged(googleIdToken))
             } catch (e: ApiException) {
                 Toast.makeText(requireContext(), "error",Toast.LENGTH_SHORT).show()

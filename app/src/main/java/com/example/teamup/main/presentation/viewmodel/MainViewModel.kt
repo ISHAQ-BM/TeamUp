@@ -3,6 +3,7 @@ package com.example.teamup.main.presentation.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.teamup.auth.data.source.local.AuthLocalDataSource
 import com.example.teamup.core.model.Resource
 import com.example.teamup.main.domain.use_case.GetCurrentUserUseCase
 import com.example.teamup.main.presentation.ui.state.MainUiState
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getCurrentUserUseCase: GetCurrentUserUseCase
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    val authLocalDataSource: AuthLocalDataSource
 ) : ViewModel() {
 
 

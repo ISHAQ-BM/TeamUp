@@ -51,10 +51,6 @@
         <item name="shapeAppearanceMediumComponent">@style/MD3.Shape.Medium.Custom</item>
         <item name="shapeAppearanceLargeComponent">@style/MD3.Shape.Large.Custom</item>
 
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-
 
     </style>
 

@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.teamup.R
 import com.example.teamup.databinding.ActivityMainBinding
 import com.example.teamup.main.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,35 +34,40 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
 
+
+
         viewModel.getCurrentUser()
+
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+
+
+        navHostFragment.findNavController().addOnDestinationChangedListener { _ , destination , _ ->
+            when(destination.id){
+                R.id.homeFragment -> showBottomNav()
+                R.id.workspaceFragment -> showBottomNav()
+                R.id.chatFragment -> showBottomNav()
+                R.id.profileFragment -> showBottomNav()
+                else -> hideBottomNav()
+            }
+
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     if (uiState.isUserLoggedIn) {
-                        navController.navigate(com.example.teamup.R.id.bottom_nav_graph)
+                        navController.navigate(R.id.bottom_nav_graph)
                     }
                 }
             }
         }
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(com.example.teamup.R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
-
         binding?.bottomNavigation?.setupWithNavController(navHostFragment.findNavController())
 
-
-        navHostFragment.findNavController().addOnDestinationChangedListener { _ , destination , _ ->
-            when(destination.id){
-                com.example.teamup.R.id.homeFragment -> showBottomNav()
-                com.example.teamup.R.id.workspaceFragment -> showBottomNav()
-                com.example.teamup.R.id.chatFragment -> showBottomNav()
-                com.example.teamup.R.id.profileFragment -> showBottomNav()
-                else -> hideBottomNav()
-            }
-
-        }
     }
     private fun showBottomNav() {
         binding?.bottomNavigation?.visibility= View.VISIBLE
