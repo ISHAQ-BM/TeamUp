@@ -63,7 +63,11 @@
     <string name="number_of_reviews">(%1$d reviews)</string>
     <string name="following">Following</string>
     <string name="follow">Follow</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="required_skills">Required skills</string>
+    <string name="project_scenario">Project Scenario</string>
+    <string name="learning_goals">Learning Goals</string>
+    <string name="team_and_roles">Team and roles</string>
+    <string name="request_to_join">Request to join</string>
 
 </resources>
