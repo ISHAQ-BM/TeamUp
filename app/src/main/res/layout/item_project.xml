@@ -23,13 +23,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/skills_recycler_view"
+            android:id="@+id/categories_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_skill"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -38,11 +36,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
-            app:layout_constraintLeft_toLeftOf="@id/skills_recycler_view"
-            app:layout_constraintTop_toBottomOf="@id/skills_recycler_view" />
+            app:layout_constraintLeft_toLeftOf="@id/categories_recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/categories_recycler_view" />
 
         <TextView
-            android:id="@+id/project_description"
+            android:id="@+id/project_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_25sdp"
@@ -57,10 +55,10 @@
 
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintLeft_toLeftOf="@id/project_title"
-            app:layout_constraintTop_toBottomOf="@id/project_description" />
+            app:layout_constraintTop_toBottomOf="@id/project_summary" />
 
         <TextView
-            android:id="@+id/project_mentor_name"
+            android:id="@+id/project_mentor_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_9sdp"
@@ -68,10 +66,10 @@
             app:layout_constraintLeft_toRightOf="@id/project_mentor_profile_image" />
 
         <TextView
-            android:id="@+id/project_mentor_profession"
+            android:id="@+id/project_mentor_career"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@id/project_mentor_name"
+            app:layout_constraintLeft_toLeftOf="@id/project_mentor_user_name"
             app:layout_constraintBottom_toBottomOf="@id/project_mentor_profile_image" />
 
         <TextView
@@ -79,8 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_50sdp"
-            app:layout_constraintLeft_toRightOf="@id/project_mentor_profession"
-            app:layout_constraintBottom_toBottomOf="@id/project_mentor_profession" />
+            app:layout_constraintLeft_toRightOf="@id/project_mentor_career"
+            app:layout_constraintBottom_toBottomOf="@id/project_mentor_career" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

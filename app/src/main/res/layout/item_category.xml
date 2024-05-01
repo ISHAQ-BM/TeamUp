@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.chip.Chip
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+    android:layout_marginRight="@dimen/_9sdp"
+    app:chipIconTint="@color/md_theme_primary"
+    android:id="@+id/category"
+    style="@style/Widget.Material3.Chip.Assist"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="RtlHardcoded" />
+
+

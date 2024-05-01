@@ -1,4 +1,4 @@
-package com.example.teamup.mentors.presentation.adapter
+package com.example.teamup.home.presentation.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

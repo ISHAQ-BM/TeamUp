@@ -18,11 +18,8 @@ abstract class BaseRemoteDataSource {
             if (response.isSuccessful) {
                 emit(Resource.Success(data = response.body()!!))
             } else {
-                Log.d("error body", "${response.errorBody()}")
-                Log.d("error response", "${response}")
-                Log.d("error message", "${response.message()}")
                 Log.d("error code", "${response.code()}")
-                emit(Resource.Error(response.errorBody().toString()))
+                emit(Resource.Error(response.code().toString()))
             }
         } catch (e: HttpException) {
             Log.d("error httpexception", e.message.toString())

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teamup.R
 import com.example.teamup.databinding.FragmentHomeBinding
-import com.example.teamup.mentors.presentation.adapter.ViewPagerAdapter
+import com.example.teamup.home.presentation.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 
