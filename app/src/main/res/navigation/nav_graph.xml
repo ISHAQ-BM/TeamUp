@@ -8,10 +8,23 @@
         android:id="@+id/bottom_nav_graph"
         app:startDestination="@id/homeFragment">
         <fragment
+            android:id="@+id/projectDetailsFragment"
+            android:name="com.example.teamup.projects.presentation.ui.fragment.ProjectDetailsFragment"
+            android:label="fragment_project_details"
+            tools:layout="@layout/fragment_project_details">
+            <argument
+                android:name="id"
+                app:argType="string" />
+        </fragment>
+        <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.teamup.home.presentation.ui.fragment.HomeFragment"
             android:label="fragment_home"
-            tools:layout="@layout/fragment_home" />
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_homeFragment_to_projectDetailsFragment"
+                app:destination="@id/projectDetailsFragment" />
+        </fragment>
 
         <fragment
             android:id="@+id/workspaceFragment"

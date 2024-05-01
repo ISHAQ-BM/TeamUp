@@ -54,7 +54,7 @@
             android:contentDescription="@string/star_rating" />
 
         <TextView
-            android:id="@+id/mentor_average_rating"
+            android:id="@+id/mentor_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
@@ -67,11 +67,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-            app:layout_constraintTop_toTopOf="@id/mentor_average_rating"
+            app:layout_constraintTop_toTopOf="@id/mentor_rating"
 
             android:layout_marginLeft="@dimen/_5sdp"
-            app:layout_constraintBottom_toBottomOf="@id/mentor_average_rating"
-            app:layout_constraintLeft_toRightOf="@id/mentor_average_rating" />
+            app:layout_constraintBottom_toBottomOf="@id/mentor_rating"
+            app:layout_constraintLeft_toRightOf="@id/mentor_rating" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider"

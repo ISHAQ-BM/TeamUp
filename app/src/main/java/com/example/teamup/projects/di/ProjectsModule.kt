@@ -6,6 +6,7 @@ import com.example.teamup.projects.data.source.remote.ProjectsApi
 import com.example.teamup.projects.data.source.remote.ProjectsRemoteDataSource
 import com.example.teamup.projects.data.source.remote.ProjectsRemoteDataSourceImpl
 import com.example.teamup.projects.domain.repository.ProjectsRepository
+import com.example.teamup.projects.domain.use_case.FetchProjectDetailsUseCase
 import com.example.teamup.projects.domain.use_case.FetchProjectsUseCase
 import dagger.Binds
 import dagger.Module
@@ -24,6 +25,11 @@ object ProjectsModule {
     @Singleton
     fun provideFetchProjectsUseCase(projectsRepository: ProjectsRepository) =
         FetchProjectsUseCase(projectsRepository)
+
+    @Provides
+    @Singleton
+    fun provideFetchProjectDetailsUseCase(projectsRepository: ProjectsRepository) =
+        FetchProjectDetailsUseCase(projectsRepository)
 
     @Provides
     @Singleton

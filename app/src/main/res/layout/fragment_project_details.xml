@@ -48,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories_recycler_view" />
 
@@ -63,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center_vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
 
                 android:layout_marginTop="@dimen/_12sdp"
@@ -79,6 +81,7 @@
                 app:layout_constraintTop_toTopOf="@id/level"
                 app:layout_constraintRight_toLeftOf="@id/team_size"
 
+                android:gravity="center_vertical"
                 app:drawableTint="@color/md_theme_outline"
 
                 app:drawableLeftCompat="@drawable/ic_time" />
@@ -91,6 +94,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/level"
 
+                android:gravity="center_vertical"
                 app:drawableTint="@color/md_theme_outline"
                 app:drawableLeftCompat="@drawable/ic_profile_outlined" />
 
@@ -129,13 +133,14 @@
                         android:id="@+id/mentor_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_12sdp"
 
                         app:layout_constraintTop_toTopOf="@id/mentor_image_profile"
                         app:layout_constraintLeft_toRightOf="@id/mentor_image_profile"
                         android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                     <TextView
-                        android:id="@+id/mentor_average_rating"
+                        android:id="@+id/mentor_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_6sdp"

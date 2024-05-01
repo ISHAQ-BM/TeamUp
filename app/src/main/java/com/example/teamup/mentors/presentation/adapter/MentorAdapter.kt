@@ -26,7 +26,7 @@ class MentorAdapter() : ListAdapter<MentorItemUiState, MentorAdapter.ViewHolder>
                 mentorImageProfile.load(
                     mentor.profileImageUrl.toUri().buildUpon()?.scheme("https")?.build()
                 )
-                mentorAverageRating.text = mentor.averageRating.toString()
+                mentorRating.text = mentor.averageRating.toString()
                 mentorNumberOfReviews.text = binding.root.context.resources.getString(
                     R.string.number_of_reviews,
                     mentor.reviewsNumber

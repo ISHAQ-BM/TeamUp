@@ -11,7 +11,9 @@ import com.example.teamup.databinding.ItemProjectBinding
 import com.example.teamup.projects.presentation.ui.state.ProjectItemUiState
 
 
-class ProjectAdapter() :
+class ProjectAdapter(
+    val onItemClick: (String) -> Unit
+) :
     ListAdapter<ProjectItemUiState, ProjectAdapter.ViewHolder>(DiffCallback) {
     inner class ViewHolder(private val binding: ItemProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,6 +51,7 @@ class ProjectAdapter() :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val project = getItem(position)
         holder.bind(project)
+        holder.itemView.setOnClickListener { onItemClick(project.id) }
 
     }
 

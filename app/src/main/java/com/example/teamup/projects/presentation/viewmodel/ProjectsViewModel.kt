@@ -1,6 +1,6 @@
 package com.example.teamup.projects.presentation.viewmodel
 
-import android.util.Log
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teamup.core.model.Resource
@@ -40,12 +40,10 @@ class ProjectsViewModel @Inject constructor(
 
 
     fun fetchProjects() {
-        Log.d("fetch p", "called")
         viewModelScope.launch {
             fetchProjectsUseCase().collect { result ->
                 when (result) {
                     is Resource.Error -> {
-                        Log.d("fetch p", "error")
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
@@ -56,13 +54,10 @@ class ProjectsViewModel @Inject constructor(
                     }
 
                     is Resource.Loading -> {
-                        Log.d("fetch p", "load")
                         _uiState.update { it.copy(isLoading = true) }
                     }
 
                     is Resource.Success -> {
-                        Log.d("fetch p", "success")
-                        Log.d("fetch p", "${result.data}")
                         _uiState.update {
                             it.copy(
                                 isLoading = false,

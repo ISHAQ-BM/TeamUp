@@ -3,6 +3,7 @@ package com.example.teamup.projects.data.source.remote
 import com.example.teamup.core.BaseRemoteDataSource
 import com.example.teamup.core.model.Resource
 import com.example.teamup.projects.data.source.remote.model.Project
+import com.example.teamup.projects.data.source.remote.model.ProjectDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -83,6 +84,36 @@ class ProjectsRemoteDataSourceImpl @Inject constructor(
                     )
                 )
             )
+        }
+    }
+
+    override suspend fun fetchProjectDetails(id: String): Flow<Resource<ProjectDetails>> {
+        return flow {
+            emit(
+
+                Resource.Success(
+                    ProjectDetails(
+                        id = "prj_mobile_app",
+                        title = "Develop a mobile fitness tracking app",
+                        categories = listOf("Mobile", "Ai"),
+                        skills = listOf("Kotlin", "Android", "Firebase"),
+                        postingTime = "1 week ago",
+                        level = "Beginner",
+                        duration = "1 month",
+                        teamSize = 5,
+                        summary = "This project aims to create a user-friendly mobile app that tracks fitness activities and provides personalized workout routines.",
+                        mentorCareer = "Software Engineer",
+                        mentorId = "mentor_john_doe",
+                        mentorUserName = "John Doe",
+                        mentorProfileImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlPlpTtK_z4wQ4W74DmV5pxpZYatxBAmzrg&s",
+                        mentorRating = 4.8,
+                        projectScenario = "Users can log their workouts, set goals, and track progress. The app will integrate with wearable devices for data collection.",
+                        learningGoal = "Gain exGain experience in building user interfaces, data management, and fitness app functionalities",
+                        teamAndRoles = "Gain experience in building user interfaces, data management, and fitness app functionalities"
+                    )
+                )
+            )
+
         }
     }
 }
