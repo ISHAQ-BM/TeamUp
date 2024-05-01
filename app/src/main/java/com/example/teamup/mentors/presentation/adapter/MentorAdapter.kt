@@ -21,7 +21,7 @@ class MentorAdapter() : ListAdapter<MentorItemUiState, MentorAdapter.ViewHolder>
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(mentor: MentorItemUiState) {
             binding.apply {
-                mentorName.text = mentor.name
+                mentorUserName.text = mentor.name
                 mentorProfession.text = mentor.profession
                 mentorImageProfile.load(
                     mentor.profileImageUrl.toUri().buildUpon()?.scheme("https")?.build()

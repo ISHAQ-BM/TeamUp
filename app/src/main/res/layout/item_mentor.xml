@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/mentor_name"
+            android:id="@+id/mentor_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_12sdp"
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_3sdp"
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-            app:layout_constraintLeft_toLeftOf="@id/mentor_name"
-            app:layout_constraintTop_toBottomOf="@id/mentor_name" />
+            app:layout_constraintLeft_toLeftOf="@id/mentor_user_name"
+            app:layout_constraintTop_toBottomOf="@id/mentor_user_name" />
 
         <ImageView
             android:id="@+id/rating_star"
@@ -76,7 +76,7 @@
             android:layout_width="@dimen/_127sdp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/mentor_image_profile"
-            app:layout_constraintLeft_toLeftOf="@id/mentor_name" />
+            app:layout_constraintLeft_toLeftOf="@id/mentor_user_name" />
 
         <Button
             android:id="@+id/follow"
