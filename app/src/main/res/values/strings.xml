@@ -70,5 +70,9 @@
     <string name="learning_goals">Learning Goals</string>
     <string name="team_and_roles">Team and roles</string>
     <string name="request_to_join">Request to join</string>
+    <string name="my_projects">My projects</string>
+    <string name="explore_projects">Explore projects</string>
+    <string name="browse_projects_join_teams_and_experience_the_power_of_teamwork">Browse projects , join teams , and experience the power of teamwork.</string>
+    <string name="no_project_yet">No Project yet ?</string>
 
 </resources>

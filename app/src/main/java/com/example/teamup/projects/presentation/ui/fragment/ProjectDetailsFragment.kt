@@ -43,6 +43,7 @@ class ProjectDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         viewModel.onEvent(ProjectDetailsEvent.ProjectIdChanged(args.id))
         val skillAdapter = SkillAdapter()
         val categoryAdapter = CategoryAdapter()
