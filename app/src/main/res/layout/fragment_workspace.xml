@@ -38,7 +38,8 @@
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:drawablePadding="@dimen/_5sdp"
             android:layout_height="wrap_content"
-            app:drawableLeftCompat="@drawable/ic_attach_file" />
+            app:drawableLeftCompat="@drawable/ic_attach_file"
+            app:drawableTint="@color/md_theme_onBackground" />
 
         <TextView
             android:id="@+id/tv_no_project"

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:itemCount="4"
+        android:transitionGroup="true"
         tools:listitem="@layout/item_project"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

@@ -1,8 +1,13 @@
 package com.example.teamup.main.presentation.ui.activity
 
 
+import android.app.Activity
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -25,13 +30,28 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
 
+    private var keep = true
+
 
     val viewModel: MainViewModel by viewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        splashScreen.setKeepOnScreenCondition(object :
+            androidx.core.splashscreen.SplashScreen.KeepOnScreenCondition {
+            override fun shouldKeepOnScreen(): Boolean {
+                return keep
+            }
+
+        })
+
+
+
 
 
 
@@ -60,14 +80,21 @@ class MainActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     if (uiState.isUserLoggedIn) {
+                        Log.d("navigate", "navigated")
                         navController.navigate(R.id.bottom_nav_graph)
                     }
+                    keep = false
                 }
             }
         }
 
         binding?.bottomNavigation?.setupWithNavController(navHostFragment.findNavController())
 
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        hideKeyboard(event)
+        return super.dispatchTouchEvent(event)
     }
     private fun showBottomNav() {
         binding?.bottomNavigation?.visibility= View.VISIBLE
@@ -77,6 +104,26 @@ class MainActivity : AppCompatActivity() {
     private fun hideBottomNav() {
         binding?.bottomNavigation?.visibility = View.GONE
 
+    }
+
+    private fun hideKeyboard(event: MotionEvent) {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val view = currentFocus
+            if (view != null) {
+                view.clearFocus()
+                val outRect = Rect()
+                view.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    val inputMethodManager =
+                        getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+                    inputMethodManager.hideSoftInputFromWindow(
+                        view.windowToken,
+                        InputMethodManager.HIDE_NOT_ALWAYS
+                    )
+                }
+            }
+        }
     }
 
 
