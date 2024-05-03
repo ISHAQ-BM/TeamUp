@@ -1,7 +1,6 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.teamup.auth.presentation.ui.event.ResetPasswordEvent
 import com.example.teamup.auth.presentation.viewmodel.ResetPasswordViewModel
@@ -35,6 +35,11 @@ class ResetPasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         viewModel.onEvent(ResetPasswordEvent.EmailChanged(args.email))
         viewModel.onEvent(ResetPasswordEvent.TokenChanged(args.token))
         viewLifecycleOwner.lifecycleScope.launch {

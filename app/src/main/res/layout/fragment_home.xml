@@ -13,9 +13,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true"
-
-
+        android:background="@color/md_theme_background"
         >
 
 
@@ -23,10 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
+            android:background="@color/md_theme_background"
             app:layout_scrollFlags="scroll|enterAlways|snap"
 
 
-            app:menu="@menu/top_app_bar">
+            app:menu="@menu/home_menu">
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
@@ -44,22 +43,15 @@
             android:layout_height="wrap_content"
             app:tabIndicatorAnimationMode="elastic"
             app:tabMinWidth="@dimen/_90sdp"
+            android:background="@color/md_theme_background"
             app:tabGravity="center">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
 
         </com.google.android.material.tabs.TabLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

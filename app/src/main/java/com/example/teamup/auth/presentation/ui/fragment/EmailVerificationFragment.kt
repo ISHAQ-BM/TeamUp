@@ -1,10 +1,10 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +38,10 @@ class EmailVerificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         viewModel.onEvent(EmailVerificationEvent.EmailChanged(args.email))
 
         binding?.code?.otpListener = object : OTPListener {
@@ -63,9 +67,6 @@ class EmailVerificationFragment : Fragment() {
 
         binding?.next?.setOnClickListener {
             viewModel.onEvent(EmailVerificationEvent.NextClicked)
-        }
-        binding?.back?.setOnClickListener {
-            findNavController().popBackStack()
         }
 
         binding?.resendCode?.setOnClickListener {

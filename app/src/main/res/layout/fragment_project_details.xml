@@ -10,7 +10,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_background">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -19,6 +20,7 @@
             android:minHeight="?attr/actionBarSize"
             app:title="Project Details"
             app:titleCentered="true"
+            android:background="@color/md_theme_background"
             app:navigationIconTint="@color/md_theme_onBackground"
             app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
             app:navigationIcon="@drawable/ic_arrow_back" />

@@ -1,19 +1,16 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.teamup.R
-import com.example.teamup.auth.presentation.ui.event.SecondOnboardingQuestionEvent
 import com.example.teamup.auth.presentation.ui.event.ThirdOnboardingQuestionEvent
-import com.example.teamup.auth.presentation.viewmodel.SecondOnboardingQuestionViewModel
 import com.example.teamup.auth.presentation.viewmodel.ThirdOnboardingQuestionViewModel
-import com.example.teamup.databinding.FragmentOnboarding2Binding
 import com.example.teamup.databinding.FragmentOnboarding3Binding
 import com.google.android.material.chip.Chip
 
@@ -38,13 +35,21 @@ class OnboardingFragment3 : Fragment() {
 
         }
 
-        binding?.skip?.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment3_to_bottom_nav_graph)
-        }
-
-        binding?.back?.setOnClickListener {
+        binding?.toolbar?.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+        binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.skip -> {
+                    findNavController().navigate(R.id.action_onboardingFragment3_to_bottom_nav_graph)
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+
 
 
 

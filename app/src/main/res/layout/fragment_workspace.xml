@@ -9,7 +9,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_background">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -18,7 +19,8 @@
             android:minHeight="?attr/actionBarSize"
             app:title="Workspace"
             app:titleCentered="true"
-            app:menu="@menu/top_app_bar"
+            android:background="@color/md_theme_background"
+            app:menu="@menu/home_menu"
             app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,11 +37,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="wrap_content"
             android:text="@string/my_projects"
+            android:layout_marginTop="@dimen/_12sdp"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:drawablePadding="@dimen/_5sdp"
             android:layout_height="wrap_content"
             app:drawableLeftCompat="@drawable/ic_attach_file"
             app:drawableTint="@color/md_theme_onBackground" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/workspace_illustration"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_project"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_no_project" />
 
         <TextView
             android:id="@+id/tv_no_project"

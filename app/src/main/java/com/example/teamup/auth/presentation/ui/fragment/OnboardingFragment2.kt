@@ -1,11 +1,11 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.teamup.R
@@ -36,12 +36,19 @@ class OnboardingFragment2 : Fragment() {
 
         }
 
-        binding?.back?.setOnClickListener {
+        binding?.toolbar?.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        binding?.skip?.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment2_to_onboardingFragment3)
+        binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.skip -> {
+                    findNavController().navigate(R.id.action_onboardingFragment2_to_onboardingFragment3)
+                    true
+                }
+
+                else -> false
+            }
         }
 
 

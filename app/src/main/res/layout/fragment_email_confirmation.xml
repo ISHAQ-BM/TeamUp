@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".auth.presentation.ui.fragment.EmailConfirmationFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_background">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/md_theme_background"
+            app:navigationIconTint="@color/md_theme_onBackground"
+            app:navigationIcon="@drawable/ic_arrow_back" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/_12sdp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingVertical="@dimen/_28sdp">
 
-        <TextView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-
-            app:drawableLeftCompat="@drawable/ic_back"
-            android:text="@string/back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/tv_email_verification"
@@ -31,8 +39,7 @@
             android:text="@string/email_verification"
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back"
-
+            app:layout_constraintTop_toTopOf="parent"
             />
         <TextView
             android:id="@+id/tv_sent_code"
@@ -112,4 +119,4 @@
         android:indeterminate="true"
         android:visibility="gone"
         />
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

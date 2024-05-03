@@ -15,6 +15,7 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding?=null
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,7 +27,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val viewPagerAdapter = ViewPagerAdapter(requireActivity())
 

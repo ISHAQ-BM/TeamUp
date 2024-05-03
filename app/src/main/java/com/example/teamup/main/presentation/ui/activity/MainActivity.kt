@@ -4,13 +4,16 @@ package com.example.teamup.main.presentation.ui.activity
 import android.app.Activity
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -30,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
 
-    private var keep = true
 
 
     val viewModel: MainViewModel by viewModels()
@@ -38,25 +40,39 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        splashScreen.setKeepOnScreenCondition(object :
-            androidx.core.splashscreen.SplashScreen.KeepOnScreenCondition {
-            override fun shouldKeepOnScreen(): Boolean {
-                return keep
+        binding?.root?.let {
+            ViewCompat.setOnApplyWindowInsetsListener(it) { view, windowInsets ->
+
+                val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+
+                view.layoutParams = (view.layoutParams as FrameLayout.LayoutParams).apply {
+                    leftMargin = insets.left
+                    bottomMargin = insets.bottom
+                    rightMargin = insets.right
+                    topMargin = insets.top
+                }
+
+                WindowInsetsCompat.CONSUMED
             }
-
-        })
-
-
-
-
-
+        }
 
 
         viewModel.getCurrentUser()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    if (uiState.isUserLoggedIn) {
+                        navController.navigate(R.id.bottom_nav_graph)
+                    }
+                }
+            }
+        }
 
 
         val navHostFragment =
@@ -76,17 +92,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { uiState ->
-                    if (uiState.isUserLoggedIn) {
-                        Log.d("navigate", "navigated")
-                        navController.navigate(R.id.bottom_nav_graph)
-                    }
-                    keep = false
-                }
-            }
-        }
 
         binding?.bottomNavigation?.setupWithNavController(navHostFragment.findNavController())
 

@@ -1,25 +1,18 @@
 package com.example.teamup.auth.presentation.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.teamup.R
-import com.example.teamup.auth.presentation.ui.event.EmailVerificationEvent
 import com.example.teamup.auth.presentation.ui.event.FirstOnboardingQuestionEvent
-import com.example.teamup.auth.presentation.ui.state.FirstOnboardingQuestionUiState
 import com.example.teamup.auth.presentation.viewmodel.FirstOnboardingQuestionViewModel
 import com.example.teamup.databinding.FragmentOnboarding1Binding
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.launch
 
 class OnboardingFragment1 : Fragment() {
 
@@ -42,13 +35,20 @@ class OnboardingFragment1 : Fragment() {
             handleNextClicked()
 
         }
-        
-        binding?.skip?.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment1_to_onboardingFragment2)
+
+        binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.skip -> {
+                    findNavController().navigate(R.id.action_onboardingFragment1_to_onboardingFragment2)
+                    true
+                }
+
+                else -> false
+            }
         }
 
 
-        
+
         binding?.chipGroup?.setOnCheckedStateChangeListener { chipGroup, _ ->
             viewModel.onEvent(FirstOnboardingQuestionEvent.SelectedAnswerChanged(
                 (chipGroup.getChildAt(chipGroup.checkedChipId) as? Chip)?.text.toString(),
