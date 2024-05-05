@@ -41,10 +41,10 @@
             android:label="fragment_chat"
             tools:layout="@layout/fragment_chat" />
         <fragment
-            android:id="@+id/profileFragment"
-            android:name="com.example.teamup.profile.presentation.ui.fragment.ProfileFragment"
+            android:id="@+id/accountFragment"
+            android:name="com.example.teamup.account.presentation.ui.fragment.AccountFragment"
             android:label="fragment_profile"
-            tools:layout="@layout/fragment_profile" />
+            tools:layout="@layout/fragment_account" />
 
     </navigation>
     <fragment

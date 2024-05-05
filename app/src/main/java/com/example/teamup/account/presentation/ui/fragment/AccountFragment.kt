@@ -1,13 +1,13 @@
-package com.example.teamup.profile.presentation.ui.fragment
+package com.example.teamup.account.presentation.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.teamup.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment() {
+class AccountFragment : Fragment() {
 
     private var binding: FragmentProfileBinding?=null
 

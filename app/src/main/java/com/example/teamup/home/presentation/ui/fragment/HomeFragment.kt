@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
         val viewPagerAdapter = ViewPagerAdapter(requireActivity())
 
+
         binding?.apply {
             viewPager.adapter = viewPagerAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->

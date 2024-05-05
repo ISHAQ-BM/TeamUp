@@ -38,6 +38,7 @@ class ProjectsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         viewModel.fetchProjects()
         val adapter = ProjectAdapter { id ->
             viewModel.onEvent(ProjectsEvent.ProjectItemClicked(id))

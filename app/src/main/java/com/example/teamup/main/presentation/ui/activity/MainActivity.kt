@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment -> showBottomNav()
                 R.id.workspaceFragment -> showBottomNav()
                 R.id.chatFragment -> showBottomNav()
-                R.id.profileFragment -> showBottomNav()
+                R.id.accountFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
 

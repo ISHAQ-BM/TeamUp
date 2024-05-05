@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:contentPadding="@dimen/_18sdp"
     app:cardCornerRadius="@dimen/_9sdp"
+    android:layout_marginHorizontal="@dimen/_12sdp"
     tools:ignore="RtlHardcoded"
 
     android:layout_marginTop="@dimen/_6sdp">

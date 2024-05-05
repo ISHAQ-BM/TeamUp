@@ -106,8 +106,8 @@ dependencies {
     implementation ("com.github.appsfeature:otp-view:1.0")
 
     // datastore
-    implementation("androidx.datastore:datastore-preferences:1.1.0")
-    implementation("androidx.datastore:datastore:1.1.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore:1.1.1")
 
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
